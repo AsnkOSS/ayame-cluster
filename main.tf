@@ -1,10 +1,4 @@
 terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "~> 1.45"
-    }
-  }
   backend "s3" {
     bucket = "asai-terraform-state"
     key    = "ayame-cluster.tfstate"
@@ -19,6 +13,16 @@ terraform {
     skip_metadata_api_check     = true
     skip_requesting_account_id  = true
     force_path_style            = true
+  }
+}
+
+// hetzner
+terraform {
+  required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.45"
+    }
   }
 }
 
