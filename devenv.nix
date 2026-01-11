@@ -19,7 +19,6 @@
 
   env = {
     TF_VAR_hcloud_token = "op://Ayame/Hcloud_Token/credential";
-    TF_VAR_storage_box_password = "op://Ayame/Hcloud_Storage_Box_Password/credential";
     AWS_ACCESS_KEY_ID = "op://Ayame/Hcloud_S3_Access_Key/credential";
     AWS_SECRET_ACCESS_KEY = "op://Ayame/Hcloud_S3_Secret_Key/credential";
   };

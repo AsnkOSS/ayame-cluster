@@ -49,18 +49,6 @@ module "loadbalancer" {
         retries  = 3
       }
     }
-    k0s_api_server = {
-      protocol         = "tcp"
-      listen_port      = 9443
-      destination_port = 9443
-      health_check = {
-        protocol = "tcp"
-        port     = 6443
-        interval = 10
-        timeout  = 5
-        retries  = 3
-      }
-    }
   }
 }
 
@@ -83,20 +71,4 @@ module "firewall" {
       source_ips = ["0.0.0.0/0", "::/0"]
     }
   ]
-}
-
-module "storagebox" {
-  source = "./modules/storagebox"
-
-  name             = var.storage_box_name
-  storage_box_type = var.storage_box_type
-  location         = var.location
-  password         = var.storage_box_password
-
-  access_settings = {
-    reachable_externally = false
-    samba_enabled        = true
-    webdav_enabled       = false
-    ssh_enabled          = false
-  }
 }
