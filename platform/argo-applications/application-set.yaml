@@ -22,7 +22,6 @@ spec:
                 targetRevision: main
                 path: "{{ .path.path }}"
             destination:
-                server: "{{ .server }}"
                 namespace: "{{ index .path.segments 1 }}"
             syncPolicy:
                 syncOptions:
