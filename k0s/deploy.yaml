@@ -47,7 +47,7 @@ spec:
 apiVersion: k0s.k0sproject.io/v1beta1
 kind: ClusterConfig
 metadata:
-    name: k0s
+    name: ayame-cluster
 spec:
     api:
         externalAddress: 10.0.0.2
