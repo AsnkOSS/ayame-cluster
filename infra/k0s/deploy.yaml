@@ -19,7 +19,7 @@ spec:
                     k0sApiPort: 9443
                     sans:
                         - 10.0.0.2
-                        - 142.132.246.195
+                        - 128.140.29.78
                     ca:
                         expiresAfter: 87600h
                         certificatesExpireAfter: 8760h

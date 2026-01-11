@@ -59,7 +59,12 @@ variable "lb_type" {
   default = "lb11"
 }
 
-variable "lb_private_ip" {
+variable "lb_internal_private_ip" {
   type    = string
   default = "10.0.0.2"
+}
+
+variable "lb_external_private_ip" {
+  type    = string
+  default = "10.0.0.3"
 }

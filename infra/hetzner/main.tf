@@ -25,14 +25,16 @@ module "servers" {
   servers   = var.servers
 }
 
-module "loadbalancer" {
+module "internal-loadbalancer" {
   source   = "./modules/loadbalancer"
-  name     = "${var.cluster_name}-lb"
+  name     = "${var.cluster_name}-internal-lb"
   lb_type  = var.lb_type
   location = var.location
 
   subnet_id  = module.network.subnet_id
-  private_ip = var.lb_private_ip
+  private_ip = var.lb_internal_private_ip
+
+  enable_public_interface = false
 
   target_server_map = module.servers.server_ids
 
@@ -61,13 +63,66 @@ module "loadbalancer" {
         retries  = 3
       }
     }
-    konnectivity-server = {
+    konnectivity_server = {
       protocol         = "tcp"
       listen_port      = 8132
       destination_port = 8132
       health_check = {
         protocol = "tcp"
         port     = 8132
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
+  }
+}
+
+module "external-loadbalancer" {
+  source   = "./modules/loadbalancer"
+  name     = "${var.cluster_name}-external-lb"
+  lb_type  = var.lb_type
+  location = var.location
+
+  subnet_id  = module.network.subnet_id
+  private_ip = var.lb_external_private_ip
+
+  enable_public_interface = true
+
+  target_server_map = module.servers.server_ids
+
+  services = {
+    kube_api_server = {
+      protocol         = "tcp"
+      listen_port      = 6443
+      destination_port = 6443
+      health_check = {
+        protocol = "tcp"
+        port     = 6443
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
+    http_gateway = {
+      protocol         = "tcp"
+      listen_port      = 80
+      destination_port = 80
+      health_check = {
+        protocol = "tcp"
+        port     = 80
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
+    https_gateway = {
+      protocol         = "tcp"
+      listen_port      = 443
+      destination_port = 443
+      health_check = {
+        protocol = "tcp"
+        port     = 443
         interval = 10
         timeout  = 5
         retries  = 3

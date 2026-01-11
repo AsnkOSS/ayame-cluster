@@ -5,6 +5,11 @@ variable "location" { type = string }
 variable "subnet_id" { type = string }
 variable "private_ip" { type = string }
 
+variable "enable_public_interface" {
+  type = bool
+  default = true
+}
+
 variable "target_server_map" {
   type = map(string)
 }
