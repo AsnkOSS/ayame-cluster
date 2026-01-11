@@ -8,7 +8,7 @@
     pkgs.git
     pkgs.terraform
     pkgs.kubectl
-    pkgs.k3sup
+    pkgs.k0sctl
   ];
   dotenv = {
     enable = true;
