@@ -130,7 +130,7 @@ spec:
 
         # Node 2
         - ssh:
-              address: 46.224.98.2
+              address: 91.99.180.215
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key

@@ -12,6 +12,7 @@ spec:
               revision: main
               directories:
                   - path: platform/apps/*
+                  - path: platform/apps/*/*
     template:
         metadata:
             name: "{{ .path.basename }}"
