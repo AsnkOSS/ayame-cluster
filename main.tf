@@ -41,6 +41,6 @@ provider "hcloud" {
 }
 
 module "hetzner" {
-  source               = "./hetzner"
+  source               = "./infra/hetzner"
   storage_box_password = var.storage_box_password
 }
