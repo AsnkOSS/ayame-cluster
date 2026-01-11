@@ -7,13 +7,11 @@ spec:
     goTemplate: true
     goTemplateOptions: ["missingkey=error"]
     generators:
-        - matrix:
-              generators:
-                  - git:
-                        repoURL: https://github.com/AsnkOSS/ayame-cluster.git
-                        revision: prod
-                        directories:
-                            - path: platform/apps/*/
+        - git:
+              repoURL: https://github.com/AsnkOSS/ayame-cluster.git
+              revision: prod
+              directories:
+                  - path: platform/apps/*/
     template:
         metadata:
             name: "{{ .path.basename }}"
