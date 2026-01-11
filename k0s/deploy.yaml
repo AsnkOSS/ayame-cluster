@@ -8,35 +8,35 @@ spec:
         version: v1.34.3+k0s.0
     hosts:
         - ssh:
-              address: 49.13.208.38
+              address: 46.224.107.21
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
           privateAddress: 10.0.0.11
         - ssh:
-              address: 46.224.107.21
+              address: 128.140.56.33
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
           privateAddress: 10.0.0.12
         - ssh:
-              address: 91.98.33.230
+              address: 46.224.98.2
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
           privateAddress: 10.0.0.13
         - ssh:
-              address: 46.224.98.2
+              address: 49.13.208.38
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: worker
           privateAddress: 10.0.0.21
         - ssh:
-              address: 128.140.56.33
+              address: 91.98.33.230
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
