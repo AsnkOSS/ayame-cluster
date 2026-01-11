@@ -49,6 +49,30 @@ module "loadbalancer" {
         retries  = 3
       }
     }
+    k0s_api_server = {
+      protocol         = "tcp"
+      listen_port      = 9443
+      destination_port = 9443
+      health_check = {
+        protocol = "tcp"
+        port     = 9443
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
+    konnectivity-server = {
+      protocol         = "tcp"
+      listen_port      = 8132
+      destination_port = 8132
+      health_check = {
+        protocol = "tcp"
+        port     = 8132
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
   }
 }
 

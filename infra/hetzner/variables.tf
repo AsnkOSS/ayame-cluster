@@ -50,6 +50,7 @@ variable "servers" {
     "master-3" = { role = "master", private_ip = "10.0.0.13" }
     "node-1"   = { role = "node", private_ip = "10.0.0.21" }
     "node-2"   = { role = "node", private_ip = "10.0.0.22" }
+    "node-3"   = { role = "node", private_ip = "10.0.0.23" }
   }
 }
 

@@ -14,6 +14,7 @@ spec:
                 name: ayame-cluster
             spec:
                 api:
+                    externalAddress: 10.0.0.2
                     port: 6443
                     k0sApiPort: 9443
                     sans:
@@ -45,8 +46,8 @@ spec:
                     clusterDomain: ayame-cluster.local
                     dualStack:
                         enabled: true
-                        IPv6podCIDR: fd00:10:244::/56
-                        IPv6serviceCIDR: fd00:10:96::/112
+                        IPv6podCIDR: fd00:10:244::/108
+                        IPv6serviceCIDR: fd00:10:96::/108
                     kubeProxy:
                         iptables:
                             minSyncPeriod: 0s
@@ -59,17 +60,11 @@ spec:
                             udpTimeout: 0s
                         metricsBindAddress: 0.0.0.0:10249
                         mode: iptables
-                    kuberouter:
-                        autoMTU: true
-                        hairpin: Enabled
-                        metricsPort: 8080
+                    calico:
+                        mode: bird
                     nodeLocalLoadBalancing:
-                        enabled: true
-                        envoyProxy:
-                            apiServerBindPort: 7443
-                            konnectivityServerBindPort: 7132
-                        type: EnvoyProxy
-                    provider: kuberouter
+                        enabled: false
+                    provider: calico
                     podCIDR: 10.244.0.0/16
                     serviceCIDR: 10.96.0.0/12
 
@@ -86,45 +81,71 @@ spec:
                     enabled: true
 
     hosts:
+        # Master 1
         - ssh:
-              address: 91.98.33.230
+              address: 5.75.252.128
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller+worker
           privateAddress: 10.0.0.11
           noTaints: true
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.11"
 
+        # Master 2
         - ssh:
-              address: 49.13.208.38
+              address: 46.224.107.21
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller+worker
           privateAddress: 10.0.0.12
           noTaints: true
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.12"
 
+        # Master 3
         - ssh:
-              address: 46.224.98.2
+              address: 49.13.208.38
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller+worker
           privateAddress: 10.0.0.13
           noTaints: true
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.13"
 
-        - ssh:
-              address: 46.224.107.21
-              user: root
-              port: 22
-              keyPath: ./secrets/ayame-cluster.key
-          role: worker
-          privateAddress: 10.0.0.21
-
+        # Node 1
         - ssh:
               address: 128.140.56.33
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: worker
+          privateAddress: 10.0.0.21
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.21"
+
+        # Node 2
+        - ssh:
+              address: 46.224.98.2
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: worker
           privateAddress: 10.0.0.22
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.22"
+
+        # Node 3
+        - ssh:
+              address: 91.98.33.230
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: worker
+          privateAddress: 10.0.0.23
+          installFlags:
+              - --kubelet-extra-args="--node-ip=10.0.0.23"
