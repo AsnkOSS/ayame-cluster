@@ -12,21 +12,21 @@ spec:
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
-          role: controller
+          role: controller+worker
           privateAddress: 10.0.0.11
         - ssh:
               address: 128.140.56.33
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
-          role: controller
+          role: controller+worker
           privateAddress: 10.0.0.12
         - ssh:
               address: 46.224.98.2
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
-          role: controller
+          role: controller+worker
           privateAddress: 10.0.0.13
         - ssh:
               address: 49.13.208.38
