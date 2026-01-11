@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/refs/heads/main/schemas/v3.2.2/standalone-strict/v1alpha1appproject.json
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+    name: ayame-apps
+spec:
+    sourceRepos:
+        - "https://github.com/AsnkOSS/ayame-cluster.git"
+    destinations:
+        - name: "mimosa"
+          namespace: "*"
+    clusterResourceWhitelist:
+        - group: "*"
+          kind: "*"

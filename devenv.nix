@@ -14,6 +14,7 @@
     terraform
     k0sctl
     argocd
+    istioctl
     just
   ];
 

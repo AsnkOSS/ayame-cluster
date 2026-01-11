@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/refs/heads/main/schemas/v3.2.2/standalone-strict/v1alpha1applicationset.json
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+    name: ayame-apps
+spec:
+    goTemplate: true
+    goTemplateOptions: ["missingkey=error"]
+    generators:
+        - matrix:
+              generators:
+                  - git:
+                        repoURL: https://github.com/AsnkOSS/ayame-cluster.git
+                        revision: prod
+                        directories:
+                            - path: platform/apps/*/
+    template:
+        metadata:
+            name: "{{ .path.basename }}"
+        spec:
+            project: mimosa-project
+            source:
+                repoURL: https://github.com/AsnkOSS/ayame-cluster.git
+                targetRevision: prod
+                path: "{{ .path.path }}"
+            destination:
+                server: "{{ .server }}"
+                namespace: "{{ index .path.segments 1 }}"
+            syncPolicy:
+                syncOptions:
+                    - CreateNamespace=true
+                    - ServerSideApply=true
