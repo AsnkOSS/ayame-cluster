@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
     - hcloud-csi.yaml
     - secret.yaml
+
+namespace: kube-system
