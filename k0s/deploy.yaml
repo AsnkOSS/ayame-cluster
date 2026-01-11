@@ -1,0 +1,108 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+    name: ayame-cluster
+    user: admin
+spec:
+    k0s:
+        version: v1.34.3+k0s.0
+    hosts:
+        - ssh:
+              address: 49.13.208.38
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: controller
+        - ssh:
+              address: 46.224.107.21
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: controller
+        - ssh:
+              address: 91.98.33.230
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: controller
+        - ssh:
+              address: 46.224.98.2
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: worker
+        - ssh:
+              address: 128.140.56.33
+              user: root
+              port: 22
+              keyPath: ./secrets/ayame-cluster.key
+          role: worker
+
+---
+apiVersion: k0s.k0sproject.io/v1beta1
+kind: ClusterConfig
+metadata:
+    name: k0s
+spec:
+    api:
+        externalAddress: 10.0.0.2
+        port: 6443
+        k0sApiPort: 9443
+        sans:
+            - 10.0.0.2
+            - 142.132.246.195
+        ca:
+            expiresAfter: 87600h
+            certificatesExpireAfter: 8760h
+    controllerManager: {}
+    extensions:
+        helm:
+            concurrencyLevel: 5
+    installConfig:
+        users:
+            etcdUser: etcd
+            kineUser: kube-apiserver
+            konnectivityUser: konnectivity-server
+            kubeAPIserverUser: kube-apiserver
+            kubeSchedulerUser: kube-scheduler
+    konnectivity:
+        adminPort: 8133
+        agentPort: 8132
+    network:
+        clusterDomain: ayame-cluster.local
+        dualStack:
+            enabled: false
+        kubeProxy:
+            iptables:
+                minSyncPeriod: 0s
+                syncPeriod: 0s
+            ipvs:
+                minSyncPeriod: 0s
+                syncPeriod: 0s
+                tcpFinTimeout: 0s
+                tcpTimeout: 0s
+                udpTimeout: 0s
+            metricsBindAddress: 0.0.0.0:10249
+            mode: iptables
+        kuberouter:
+            autoMTU: true
+            hairpin: Enabled
+            metricsPort: 8080
+        nodeLocalLoadBalancing:
+            enabled: false
+            envoyProxy:
+                apiServerBindPort: 7443
+                konnectivityServerBindPort: 7132
+            type: EnvoyProxy
+        podCIDR: 10.244.0.0/16
+        provider: kuberouter
+        serviceCIDR: 10.96.0.0/12
+    scheduler: {}
+    storage:
+        etcd:
+            ca:
+                expiresAfter: 87600h
+                certificatesExpireAfter: 8760h
+        type: etcd
+    telemetry:
+        enabled: true
