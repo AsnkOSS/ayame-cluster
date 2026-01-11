@@ -23,7 +23,6 @@ spec:
                 path: "{{ .path.path }}"
             destination:
                 name: "ayame-cluster"
-                namespace: "{{ .path.basename }}"
             syncPolicy:
                 syncOptions:
                     - CreateNamespace=true
