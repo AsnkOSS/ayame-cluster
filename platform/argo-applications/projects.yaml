@@ -2,12 +2,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-    name: ayame-apps
+    name: ayame-project
 spec:
     sourceRepos:
         - "https://github.com/AsnkOSS/ayame-cluster.git"
     destinations:
-        - name: "mimosa"
+        - name: "ayame-cluster"
           namespace: "*"
     clusterResourceWhitelist:
         - group: "*"

@@ -9,17 +9,17 @@ spec:
     generators:
         - git:
               repoURL: https://github.com/AsnkOSS/ayame-cluster.git
-              revision: prod
+              revision: main
               directories:
                   - path: platform/apps/*/
     template:
         metadata:
             name: "{{ .path.basename }}"
         spec:
-            project: mimosa-project
+            project: ayame-project
             source:
                 repoURL: https://github.com/AsnkOSS/ayame-cluster.git
-                targetRevision: prod
+                targetRevision: main
                 path: "{{ .path.path }}"
             destination:
                 server: "{{ .server }}"
