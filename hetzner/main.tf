@@ -84,3 +84,19 @@ module "firewall" {
     }
   ]
 }
+
+module "storagebox" {
+  source = "./modules/storagebox"
+
+  name             = var.storage_box_name
+  storage_box_type = var.storage_box_type
+  location         = var.location
+  password         = var.storage_box_password
+
+  access_settings = {
+    reachable_externally = false
+    samba_enabled        = true
+    webdav_enabled       = false
+    ssh_enabled          = false
+  }
+}

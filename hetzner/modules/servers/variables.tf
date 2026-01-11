@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "~> 1.45"
-    }
-  }
-}
-
 variable "cluster_name" { type = string }
 variable "location" { type = string }
 variable "image" { type = string }

@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.45"
+    }
+  }
+}
+
 resource "hcloud_load_balancer" "this" {
   name               = var.name
   load_balancer_type = var.lb_type

@@ -31,10 +31,16 @@ variable "hcloud_token" {
   sensitive = true
 }
 
+variable "storage_box_password" {
+  type      = string
+  sensitive = true
+}
+
 provider "hcloud" {
   token = var.hcloud_token
 }
 
 module "hetzner" {
-  source = "./hetzner"
+  source               = "./hetzner"
+  storage_box_password = var.storage_box_password
 }

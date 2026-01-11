@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "~> 1.45"
-    }
-  }
-}
-
 variable "name" { type = string }
 variable "lb_type" { type = string }
 variable "location" { type = string }

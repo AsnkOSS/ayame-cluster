@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.45"
+    }
+  }
+}
+
 resource "hcloud_network" "this" {
   name     = var.name
   ip_range = var.network_ip_range

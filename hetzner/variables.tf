@@ -62,3 +62,18 @@ variable "lb_private_ip" {
   type    = string
   default = "10.0.0.2"
 }
+
+variable "storage_box_name" {
+  type    = string
+  default = "ayame-cluster-storage"
+}
+
+variable "storage_box_type" {
+  type    = string
+  default = "bx21"
+}
+
+variable "storage_box_password" {
+  type      = string
+  sensitive = true
+}
