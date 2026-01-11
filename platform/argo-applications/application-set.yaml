@@ -11,7 +11,7 @@ spec:
               repoURL: https://github.com/AsnkOSS/ayame-cluster.git
               revision: main
               directories:
-                  - path: platform/apps/*/
+                  - path: platform/apps/*
     template:
         metadata:
             name: "{{ .path.basename }}"
@@ -22,7 +22,8 @@ spec:
                 targetRevision: main
                 path: "{{ .path.path }}"
             destination:
-                namespace: "{{ index .path.segments 1 }}"
+                name: "ayame-cluster"
+                namespace: "{{ .path.basename }}"
             syncPolicy:
                 syncOptions:
                     - CreateNamespace=true
