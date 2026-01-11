@@ -15,15 +15,7 @@
     k0sctl
     argocd
     just
-    _1password-cli
   ];
-
-  dotenv = {
-    enable = true;
-    filename = [
-      ".env"
-    ];
-  };
 
   env = {
     TF_VAR_hcloud_token = "op://Ayame/Hcloud_Token/credential";
