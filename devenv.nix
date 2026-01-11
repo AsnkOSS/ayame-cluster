@@ -4,16 +4,30 @@
 }:
 
 {
-  packages = [
-    pkgs.git
-    pkgs.terraform
-    pkgs.kubectl
-    pkgs.k0sctl
+  packages = with pkgs; [
+    git
+    kubeseal
+    kubectl
+    kustomize
+    kubernetes-helm
+    kubeconform
+    terraform
+    k0sctl
+    argocd
+    just
+    _1password-cli
   ];
+
   dotenv = {
     enable = true;
     filename = [
       ".env"
     ];
+  };
+
+  env = {
+    TF_VAR_hcloud_token = "op://Ayame/Hcloud_Token/credential";
+    AWS_ACCESS_KEY_ID = "op://Ayame/Hcloud_S3_Access_Key/credential";
+    AWS_SECRET_ACCESS_KEY = "op://Ayame/Hcloud_S3_Secret_Key/credential";
   };
 }
