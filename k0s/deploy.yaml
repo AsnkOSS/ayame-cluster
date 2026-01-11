@@ -13,30 +13,35 @@ spec:
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
+          privateAddress: 10.0.0.11
         - ssh:
               address: 46.224.107.21
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
+          privateAddress: 10.0.0.12
         - ssh:
               address: 91.98.33.230
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: controller
+          privateAddress: 10.0.0.13
         - ssh:
               address: 46.224.98.2
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: worker
+          privateAddress: 10.0.0.21
         - ssh:
               address: 128.140.56.33
               user: root
               port: 22
               keyPath: ./secrets/ayame-cluster.key
           role: worker
+          privateAddress: 10.0.0.22
 
 ---
 apiVersion: k0s.k0sproject.io/v1beta1
