@@ -41,7 +41,7 @@ variable "server_type" {
 variable "servers" {
   description = "All servers in the cluster"
   type = map(object({
-    role       = string # master | node
+    role       = string
     private_ip = string
   }))
   default = {
