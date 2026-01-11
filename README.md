@@ -10,3 +10,4 @@
 
 - ayame-cluster.pub
 - ayame-cluster.key
+- kubeconfig
