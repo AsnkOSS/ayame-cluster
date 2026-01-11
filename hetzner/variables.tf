@@ -25,7 +25,7 @@ variable "subnet_ip_range" {
 
 variable "ssh_public_key_path" {
   type    = string
-  default = "./terraform/hetzner/ayame-cluster.pub"
+  default = "./secrets/ayame-cluster.pub"
 }
 
 variable "server_image" {
