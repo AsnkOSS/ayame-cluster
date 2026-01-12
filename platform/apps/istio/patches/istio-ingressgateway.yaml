@@ -21,3 +21,14 @@ spec:
       targetPort: 443
       nodePort: 30443
   type: NodePort
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: istio-ingress
+spec:
+  containers:
+    - env:
+        - name: CA_ADDR
+          value: istiod.istio-system.svc.cluster.local:15012
