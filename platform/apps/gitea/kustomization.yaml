@@ -11,6 +11,9 @@ resources:
   - network/service-entry.yaml
   - network/virtual-service.yaml
 
+patchesStrategicMerge:
+  - patches/gitea-valkey-cluster.yaml
+
 helmCharts:
   - name: gitea
     repo: https://dl.gitea.com/charts/
