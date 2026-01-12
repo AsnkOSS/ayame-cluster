@@ -152,5 +152,11 @@ valkey-cluster:
 
 postgresql-ha:
   enabled: true
+  postgresql:
+    database: gitea
+    username: gitea
+    existingSecret: gitea-secret
+  pgpool:
+    existingSecret: gitea-secret
   persistence:
     size: 20Gi
