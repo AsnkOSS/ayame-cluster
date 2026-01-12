@@ -24,6 +24,9 @@ spec:
       destination:
         name: "ayame-cluster"
       syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
