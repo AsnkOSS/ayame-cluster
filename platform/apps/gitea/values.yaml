@@ -152,7 +152,7 @@ postgresql-ha:
     secretKeys:
       postgresPassword: ppostgresql-password
       password: postgresql-user-password
-      repmgtPassword: postgresql-repmgr-password
+      repmgrPassword: postgresql-repmgr-password
   pgpool:
     existingSecret: gitea-secrets
     auth:
