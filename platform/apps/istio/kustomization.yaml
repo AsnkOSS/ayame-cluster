@@ -59,4 +59,6 @@ helmCharts:
     includeCRDs: true
 
 patches:
-  - path: ./ztunnel.yaml
+  - path: ./patches/ztunnel.yaml
+  - path: ./patches/istio-validator-istio-system.yaml
+  - path: ./patches/istiod-default-validator.yaml

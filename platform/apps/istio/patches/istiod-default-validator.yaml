@@ -1,0 +1,21 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: >-
+      istio:admissionregistration.k8s.io/ValidatingWebhookConfiguration:/istiod-default-validator
+  generation: 25
+  labels:
+    app: istiod
+    app.kubernetes.io/instance: istio-base
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: istiod
+    app.kubernetes.io/part-of: istio
+    app.kubernetes.io/version: 1.28.2
+    helm.sh/chart: base-1.28.2
+    istio: istiod
+    istio.io/rev: default
+    release: istio-base
+webhooks:
+  - name: validation.istio.io
+    failurePolicy: Ignore
