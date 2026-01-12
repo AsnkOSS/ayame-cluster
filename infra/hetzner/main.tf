@@ -109,11 +109,17 @@ module "external-loadbalancer" {
       listen_port      = 80
       destination_port = 31583
       health_check = {
-        protocol = "tcp"
-        port     = 31583
+        protocol = "http"
+        port     = 32361
         interval = 10
         timeout  = 5
         retries  = 3
+        http = {
+          path         = "/healthz/ready"
+          response     = "OK"
+          tls          = true
+          status_codes = ["200"]
+        }
       }
     }
     https_gateway = {
@@ -121,11 +127,17 @@ module "external-loadbalancer" {
       listen_port      = 443
       destination_port = 32392
       health_check = {
-        protocol = "tcp"
-        port     = 32392
+        protocol = "http"
+        port     = 32361
         interval = 10
         timeout  = 5
         retries  = 3
+        http = {
+          path         = "/healthz/ready"
+          response     = "OK"
+          tls          = true
+          status_codes = ["200"]
+        }
       }
     }
   }
