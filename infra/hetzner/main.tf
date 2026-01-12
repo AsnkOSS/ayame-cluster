@@ -116,7 +116,7 @@ module "external-loadbalancer" {
         retries  = 3
         http = {
           path         = "/healthz/ready"
-          response     = "OK"
+          response     = ""
           tls          = false
           status_codes = ["200"]
         }
@@ -134,7 +134,7 @@ module "external-loadbalancer" {
         retries  = 3
         http = {
           path         = "/healthz/ready"
-          response     = "OK"
+          response     = ""
           tls          = false
           status_codes = ["200"]
         }
