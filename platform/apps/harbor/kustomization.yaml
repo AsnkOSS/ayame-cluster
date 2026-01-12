@@ -11,9 +11,6 @@ resources:
   - network/service-entry.yaml
   - network/destination-rule.yaml
 
-# patchesStrategicMerge:
-#   - patches/harbor-jobservice.yaml
-
 helmCharts:
   - name: harbor
     repo: https://helm.goharbor.io
