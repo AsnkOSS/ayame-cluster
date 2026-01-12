@@ -10,7 +10,7 @@ resources:
   - network/destination-rule.yaml
   - network/gateway.yaml
   - network/service-entry.yaml
-  - network/vireual-service.yaml
+  - network/virtual-service.yaml
 
 helmCharts:
   - name: gitea
