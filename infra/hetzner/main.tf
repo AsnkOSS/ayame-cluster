@@ -117,7 +117,7 @@ module "external-loadbalancer" {
         http = {
           path         = "/healthz/ready"
           response     = "OK"
-          tls          = true
+          tls          = false
           status_codes = ["200"]
         }
       }
@@ -135,7 +135,7 @@ module "external-loadbalancer" {
         http = {
           path         = "/healthz/ready"
           response     = "OK"
-          tls          = true
+          tls          = false
           status_codes = ["200"]
         }
       }
