@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: kube-apiserver-vs
-  namespace: kube-api-server
+  name: cluster-apiserver-vs
+  namespace: cluster-apiserver
 spec:
   hosts:
     - cluster-apiserver.ayame.asnk.io
   gateways:
-    - kube-apiserver-gw
+    - cluster-apiserver-gw
   tls:
     - match:
         - port: 443
@@ -15,6 +15,6 @@ spec:
             - cluster-apiserver.ayame.asnk.io
       route:
         - destination:
-            host: kube-apiserver.internal
+            host: cluster-apiserver.internal
             port:
               number: 6443

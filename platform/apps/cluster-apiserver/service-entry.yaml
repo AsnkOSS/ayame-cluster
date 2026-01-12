@@ -1,11 +1,11 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: kube-apiserver-se
-  namespace: kube-api-server
+  name: cluster-apiserver-se
+  namespace: cluster-apiserver
 spec:
   hosts:
-    - kube-apiserver.internal
+    - cluster-apiserver.internal
   location: MESH_EXTERNAL
   resolution: STATIC
   ports:
