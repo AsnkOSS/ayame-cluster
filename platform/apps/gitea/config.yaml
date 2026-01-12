@@ -72,12 +72,8 @@ stringData:
     [packages]
     ENABLED = true
 
-    [storage]
-    STORAGE_TYPE = minio
-    MINIO_BUCKET = ayame-gitea
-    MINIO_ENDPOINT = fsn1.your-objectstorage.com
-    MINIO_ACCESS_KEY_ID = 21ULL1HLMDSDHWTN9VDR
-    MINIO_SECRET_ACCESS_KEY = jwwidCy8x9sBuGHfdUktmKTcsTD2GqmKEFoQlEF9
+    [lfs]
+    PATH = /data/git/lfs
 
     [mailer]
     ENABLED = true

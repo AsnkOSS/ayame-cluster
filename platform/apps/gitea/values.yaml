@@ -80,7 +80,7 @@ gitea:
 
   additionalConfigSources:
     - secret:
-        name: gitea-appini
+        secretName: gitea-appini
 
   ssh:
     logLevel: "INFO"
