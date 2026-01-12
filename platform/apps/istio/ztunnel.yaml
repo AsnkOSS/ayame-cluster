@@ -7,9 +7,10 @@ metadata:
 spec:
     template:
         spec:
-            env:
-                - name: ZTUNNEL_CPU_LIMIT
-                  valueFrom:
-                      resourceFieldRef:
-                          divisor: "0"
-                          resource: limits.cpu
+            containers:
+                env:
+                    - name: ZTUNNEL_CPU_LIMIT
+                      valueFrom:
+                          resourceFieldRef:
+                              divisor: "0"
+                              resource: limits.cpu
