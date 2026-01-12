@@ -12,3 +12,11 @@ spec:
           app.kubernetes.io/instance: gitea
           app.kubernetes.io/name: valkey-cluster
         name: valkey-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: hcloud-volumes
+        resources:
+          requests:
+            storage: 8Gi
+        volumeMode: Filesystem
