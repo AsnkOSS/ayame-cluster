@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: kube-apiserver-se
+  namespace: istio-system
+spec:
+  hosts:
+    - kube-apiserver.internal
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  ports:
+    - number: 6443
+      name: tls
+      protocol: TLS
+  endpoints:
+    - address: 10.0.0.2
+      ports:
+        tls: 6443

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kube-apiserver-public
+  namespace: istio-ingress
+spec:
+  secretName: kube-apiserver-public-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  dnsNames:
+    - cluster-apiserver.ayame.asnk.io
