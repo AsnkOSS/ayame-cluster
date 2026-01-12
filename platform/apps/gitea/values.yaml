@@ -11,7 +11,7 @@ strategy:
     maxSurge: "100%"
     maxUnavailable: 0
 
-clusterDomain: ayame-cluster.local
+clusterDomain: cluster.local
 
 image:
   registry: "docker.gitea.com"

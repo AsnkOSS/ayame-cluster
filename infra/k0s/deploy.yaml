@@ -43,7 +43,7 @@ spec:
           agentPort: 8132
 
         network:
-          clusterDomain: ayame-cluster.local
+          clusterDomain: cluster.local
           dualStack:
             enabled: true
             IPv6podCIDR: fd00:10:244::/108
