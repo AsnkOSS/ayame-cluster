@@ -53,6 +53,7 @@ postgresql-ha:
     postgresql:
       database: gitea
       username: gitea
+      repmgr-username: repmgr
       existingSecret: "gitea-secrets"
       existingSecretPasswordKey: "postgresql-user-password"
 
