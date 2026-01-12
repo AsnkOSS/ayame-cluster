@@ -14,6 +14,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: harbor-nginx.harbor.svc.cluster.local
+            host: harbor.harbor.svc.cluster.local
             port:
               number: 80
