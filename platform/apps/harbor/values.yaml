@@ -12,9 +12,6 @@ expose:
 
 externalURL: https://harbor.ayame.asnk.io
 
-updateStrategy:
-  type: Recreate
-
 portal:
   replicas: 1
   podSecurityContext: {}
