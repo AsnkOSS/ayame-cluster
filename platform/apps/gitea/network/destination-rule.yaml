@@ -27,8 +27,8 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: hetzner-s3
-  namespace: harbor
+  name: gitea-s3
+  namespace: gitea
 spec:
   host: fsn1.your-objectstorage.com
   trafficPolicy:
