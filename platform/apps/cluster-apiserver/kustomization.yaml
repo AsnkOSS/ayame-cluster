@@ -8,3 +8,5 @@ resources:
   - service-entry.yaml
   - virtual-service.yaml
   - destination-rule.yaml
+
+namespace: cluster-apiserver
