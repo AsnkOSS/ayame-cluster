@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiversion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+
+helmCharts:
+  - name: gitea
+    repo: https://dl.gitea.com/charts/
+    version: 1.25.3
+    releaseName: gitea
+    namespace: gitea
+    includeCRDs: false
+    valuesFile: values.yaml

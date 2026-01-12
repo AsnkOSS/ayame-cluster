@@ -1,0 +1,91 @@
+global:
+  storageClass: hcloud-volumes
+  imagePullSecrets: []
+
+namespace: gitea
+replicaCount: 1
+
+image:
+  registry: "docker.gitea.com"
+  repository: gitea
+  tag: "1.25.3"
+  rootless: true
+  pullPolicy: IfNotPresent
+
+podSecurityContext:
+  fsGroup: 1000
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+
+service:
+  http:
+    type: ClusterIP
+    port: 3000
+    clusterIP: None
+  ssh:
+    type: ClusterIP
+    port: 22
+    clusterIP: None
+
+ingress:
+  enabled: false
+
+persistence:
+  enabled: true
+  create: true
+  mount: true
+  claimName: gitea-shared-storage
+  size: 50Gi
+  accessModes: ["ReadWriteOnce"]
+  storageClass: hcloud-volumes
+  annotations:
+    helm.sh/resource-policy: keep
+
+gitea:
+  config:
+    server:
+      DOMAIN: git.asnk.io
+      ROOT_URL: "https://git.asnk.io/"
+      PROTOCOL: http
+      HTTP_PORT: 3000
+      SSH_DOMAIN: git.asnk.io
+      SSH_PORT: 22
+      SSH_LISTEN_PORT: 2222
+
+    packages:
+      ENABLED: false
+
+  additionalConfigSources:
+    - secret:
+        secretName: gitea-appini
+
+  additionalConfigFromEnvs:
+    - name: S3_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: gitea-credentials
+          key: S3_ACCESS_KEY
+    - name: S3_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: gitea-credentials
+          key: S3_SECRET_KEY
+
+valkey-cluster:
+  enabled: true
+  usePassword: false
+  cluster:
+    nodes: 3
+    replicas: 0
+
+postgresql-ha:
+  enabled: true
+  persistence:
+    size: 20Gi
