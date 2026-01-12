@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: kube-apiserver-vs
-  namespace: kube-apiserver
+  name: cluster-apiserver-vs
+  namespace: cluster-apiserver
 spec:
   hosts:
     - cluster-apiserver.ayame.asnk.io
   gateways:
-    - kube-apiserver-gw
+    - cluster-apiserver-gw
   http:
     - match:
         - port: 443
