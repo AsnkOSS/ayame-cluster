@@ -12,6 +12,44 @@ expose:
 
 externalURL: https://harbor.ayame.asnk.io
 
+portal:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+core:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+jobservice:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+registry:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+trivy:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+database:
+  type: internal
+  internal:
+    existingSecret: harbor-secrets
+    podSecurityContext: {}
+    containerSecurityContext: {}
+
+redis:
+  type: internal
+  internal:
+    existingSecret: harbor-secrets
+    podSecurityContext: {}
+    containerSecurityContext: {}
+
+exporter:
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
 persistence:
   enabled: true
   resourcePolicy: "keep"
@@ -52,7 +90,7 @@ persistence:
 
     registry:
       existingClaim: ""
-      storageClass: ""
+      storageClass: hcloud-volumes
       subPath: ""
       accessMode: ReadWriteOnce
       size: 10Gi
@@ -69,17 +107,6 @@ persistence:
       secure: true
       v4auth: true
       pathstyle: true
-
-database:
-  type: internal
-  internal:
-    existingSecret: harbor-secrets
-    shmSizeLimit: 512Mi
-
-redis:
-  type: internal
-  internal:
-    existingSecret: harbor-secrets
 
 existingSecretAdminPassword: harbor-secrets
 existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
