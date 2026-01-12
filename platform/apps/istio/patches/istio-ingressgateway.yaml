@@ -4,5 +4,4 @@ metadata:
   name: istio-ingressgateway
   namespace: istio-ingress
 spec:
-  ports:
-    type: NodePort
+  type: NodePort
