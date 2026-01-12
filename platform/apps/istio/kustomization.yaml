@@ -12,6 +12,7 @@ patches:
   - path: patches/istio-validator-istio-system.yaml
   - path: patches/istiod-default-validator.yaml
   - path: patches/istio-ingressgateway.yaml
+  - path: patches/istio-ingressgateway-env.yaml
 
 helmCharts:
   # Istio base (CRDs)
