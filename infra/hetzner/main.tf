@@ -92,18 +92,6 @@ module "external-loadbalancer" {
   target_server_map = module.servers.server_ids
 
   services = {
-    kube_api_server = {
-      protocol         = "tcp"
-      listen_port      = 6443
-      destination_port = 6443
-      health_check = {
-        protocol = "tcp"
-        port     = 6443
-        interval = 10
-        timeout  = 5
-        retries  = 3
-      }
-    }
     http_gateway = {
       protocol         = "tcp"
       listen_port      = 80
