@@ -8,7 +8,7 @@ replicaCount: 1
 image:
   registry: "docker.gitea.com"
   repository: gitea
-  tag: "1.25.3"
+  tag: "12.4.0"
   rootless: true
   pullPolicy: IfNotPresent
 
