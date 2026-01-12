@@ -47,7 +47,7 @@ cache:
 database:
   type: internal
   internal:
-    kind: postgresql-ha
+    kind: postgresql
     persistenceSize: 20Gi
 
 persistence:
