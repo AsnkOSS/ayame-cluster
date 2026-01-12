@@ -143,18 +143,21 @@ valkey-cluster:
     nodes: 3
     replicas: 0
 
-postgresql-ha:
+postgresql:
   enable: true
+  image:
+    repository: bitnamilegacy/postgresql-repmgr
   database: gitea
   username: gitea
-  existingSecret: gitea-secrets
   auth:
+    existingSecret: gitea-secrets
     secretKeys:
       postgresPassword: ppostgresql-password
       password: postgresql-user-password
       repmgrPassword: postgresql-repmgr-password
-      sr-check-password: postgresql-sr-check-password
   pgpool:
+    image:
+      repository: bitnamilegacy/pgpool
     existingSecret: gitea-secrets
     auth:
       secretKeys:
