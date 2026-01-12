@@ -14,12 +14,3 @@ spec:
   external_services:
     prometheus:
       url: "http://prometheus.istio-system:9090"
-
-    # grafana:
-    #   enabled: true
-    #   url: "http://grafana.istio-system:3000"
-
-    istio:
-      istio_component_namespaces:
-        istio: istio-system
-      istiod_deployment_name: istiod
