@@ -156,7 +156,15 @@ postgresql-ha:
     database: gitea
     username: gitea
     existingSecret: gitea-secrets
+    auth:
+      secretKeys:
+        userPasswordKey: postgresql-password
+        adminPasswordKey: postgresql-postgres-password
+        replicationPasswordKey: repmgr-password
   pgpool:
     existingSecret: gitea-secrets
+    auth:
+      secretKeys:
+        adminPasswordKey: admin-password
   persistence:
     size: 20Gi
