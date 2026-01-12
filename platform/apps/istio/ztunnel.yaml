@@ -1,27 +1,15 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-    annotations:
-        argocd.argoproj.io/tracking-id: istio:apps/DaemonSet:istio-system/ztunnel
-        deprecated.daemonset.template.generation: "1"
-    creationTimestamp: "2026-01-12T01:19:10Z"
-    generation: 1
-    labels:
-        app.kubernetes.io/instance: ztunnel
-        app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: ztunnel
-        app.kubernetes.io/part-of: istio
-        app.kubernetes.io/version: 1.28.2
-        helm.sh/chart: ztunnel-1.28.2
     name: ztunnel
     namespace: istio-system
-    resourceVersion: "144504"
-    uid: af9b4489-7fdc-4771-9cf8-c673116afd93
+
 spec:
-    spec:
-        env:
-            - name: ZTUNNEL_CPU_LIMIT
-              valueFrom:
-                  resourceFieldRef:
-                      divisor: "0"
-                      resource: limits.cpu
+    template:
+        spec:
+            env:
+                - name: ZTUNNEL_CPU_LIMIT
+                  valueFrom:
+                      resourceFieldRef:
+                          divisor: "0"
+                          resource: limits.cpu
