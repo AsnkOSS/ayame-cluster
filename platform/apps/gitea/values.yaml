@@ -30,15 +30,11 @@ service:
     type: ClusterIP
     port: 3000
     clusterIP: None
-    loadBalancerIP: 10.0.0.2
-    nodePort: 30180
 
   ssh:
     type: ClusterIP
     port: 2222
     clusterIP: None
-    loadBalancerIP: 10.0.0.2
-    nodePort: 30122
 
 ingress:
   enabled: false
