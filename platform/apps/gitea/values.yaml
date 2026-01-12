@@ -1,166 +1,90 @@
-expose:
-  type: clusterIP
-  tls:
-    enabled: false
-  clusterIP:
-    name: gitea
-    ports:
-      httpPort: 3000
-      sshPort: 22
-    annotations: {}
-    labels: {}
-
-externalURL: https://git.asnk.io
-
-giteaApp:
-  replicas: 1
-  image:
-    registry: docker.gitea.com
-    repository: gitea
-    containerSecurityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      readOnlyRootFilesystem: true
-      runAsNonRoot: true
-      runAsUser: 1000
-      runAsGroup: 1000
-
-  config:
-    domain: git.asnk.io
-    rootUrl: https://git.asnk.io/
-    packagesEnabled: false
-
-  s3:
-    existingSecret: gitea-secrets
-    accessKeyKey: S3_ACCESS_KEY
-    secretKeyKey: S3_SECRET_KEY
-    appIniSecret: gitea-appini
-
-cache:
-  type: internal
-  internal:
-    kind: valkey-cluster
-    replicas: 3
-    usePassword: false
-
-database:
-  type: internal
-  internal:
-    kind: postgresql
-    persistenceSize: 20Gi
-
-persistence:
-  enabled: true
-  create: true
-  mount: true
-  resourcePolicy: keep
-  persistentVolumeClaim:
-    data:
-      existingClaim: gitea-shared-storage
-      storageClass: hcloud-volumes
-      accessMode: ReadWriteOnce
-      size: 50Gi
-      annotations:
-        helm.sh/resource-policy: keep
-
 global:
-  storageClass: hcloud-volumes
+  storageClass: "hcloud-volumes"
   imagePullSecrets: []
 
-namespace: gitea
-replicaCount: 1
+gitea:
+  admin:
+    existingSecret: "gitea-secrets"
+    email: "sugar@sne.moe"
 
-image:
-  registry: "docker.gitea.com"
-  repository: gitea
-  tag: "1.25.3"
-  rootless: true
-  pullPolicy: IfNotPresent
+  config:
+    server:
+      DOMAIN: "git.asnk.io"
+      ROOT_URL: "https://git.asnk.io/"
+      SSH_DOMAIN: "git.asnk.io"
+      SSH_PORT: 22
+      START_SSH_SERVER: true
 
-podSecurityContext:
-  fsGroup: 1000
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: false
 
-containerSecurityContext:
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop: ["ALL"]
-  readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 1000
-  runAsGroup: 1000
+ingress:
+  enabled: true
+  className: "istio"
+  annotations:
+    kubernetes.io/ingress.class: istio
+  hosts:
+    - host: git.asnk.io
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
 
 service:
   http:
     type: ClusterIP
     port: 3000
-    clusterIP: None
-    annotations: {}
-    labels: {}
   ssh:
     type: ClusterIP
     port: 22
-    clusterIP: None
-    annotations: {}
-    labels: {}
 
-ingress:
-  enabled: false
+persistence:
+  enabled: true
+  storageClass: "hcloud-volumes"
+  size: 10Gi
+  accessModes:
+    - ReadWriteOnce
 
-gitea:
-  config:
-    server:
-      DOMAIN: git.asnk.io
-      ROOT_URL: "https://git.asnk.io/"
-      PROTOCOL: http
-      HTTP_PORT: 3000
-      SSH_DOMAIN: git.asnk.io
-      SSH_PORT: 22
-      SSH_LISTEN_PORT: 2222
-    packages:
-      ENABLED: false
+postgresql-ha:
+  enabled: true
+  global:
+    postgresql:
+      database: gitea
+      username: gitea
+      existingSecret: "gitea-secrets"
+      existingSecretPasswordKey: "postgresql-user-password"
 
-  additionalConfigSources:
-    - secret:
-        secretName: gitea-appini
+  postgresql:
+    persistence:
+      storageClass: "hcloud-volumes"
+      size: 10Gi
 
-  additionalConfigFromEnvs:
-    - name: S3_ACCESS_KEY
-      valueFrom:
-        secretKeyRef:
-          name: gitea-secrets
-          key: S3_ACCESS_KEY
-    - name: S3_SECRET_KEY
-      valueFrom:
-        secretKeyRef:
-          name: gitea-secrets
-          key: S3_SECRET_KEY
+    existingSecret: "gitea-db-secret"
+    existingSecretPasswordKey: "postgresql-password"
+
+  pgpool:
+    existingSecret: "gitea-secrets"
+    existingSecretAdminPasswordKey: "postgresql-admin-password"
+    srCheckPasswordSecretKey: "postgresql-repmgr-password"
 
 valkey-cluster:
   enabled: true
-  usePassword: false
-  cluster:
-    nodes: 3
-    replicas: 0
+  usePassword: true
 
-postgresql:
-  enable: true
-  image:
-    repository: bitnamilegacy/postgresql-repmgr
-  database: gitea
-  username: gitea
-  auth:
-    existingSecret: gitea-secrets
-    secretKeys:
-      postgresPassword: ppostgresql-password
-      password: postgresql-user-password
-      repmgrPassword: postgresql-repmgr-password
-  pgpool:
-    image:
-      repository: bitnamilegacy/pgpool
-    existingSecret: gitea-secrets
-    auth:
-      secretKeys:
-        adminPasswordKey: admin-password
+  global:
+    valkey:
+      existingSecret: "gitea-secrets"
+      existingSecretPasswordKey: "valkey-password"
+
   persistence:
-    size: 20Gi
+    storageClass: "hcloud-volumes"
+    size: 5Gi
+
+podSecurityContext:
+  fsGroup: 1000
+
+containerSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
