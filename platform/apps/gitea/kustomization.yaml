@@ -12,7 +12,17 @@ resources:
   - network/virtual-service.yaml
 
 patches:
-  - path: patches/gitea-valkey-cluster.yaml
+  - target:
+      group: apps
+      version: v1
+      kind: StatefulSet
+      name: gitea-valkey-cluster
+      namespace: gitea
+    patch: |-
+      - op: remove
+        path: /spec/volumeClaimTemplates/0/apiVersion
+      - op: remove
+        path: /spec/volumeClaimTemplates/0/kind
 
 helmCharts:
   - name: gitea
