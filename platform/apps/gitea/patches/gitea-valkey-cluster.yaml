@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gitea-valkey-cluster
+  namespace: gitea
+spec:
+  volumeClaimTemplates:
+    - metadata:
+        name: valkey-data
+        labels:
+          app.kubernetes.io/instance: gitea
+          app.kubernetes.io/name: valkey-cluster
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: hcloud-volumes
+        resources:
+          requests:
+            storage: 8Gi
+        volumeMode: Filesystem
