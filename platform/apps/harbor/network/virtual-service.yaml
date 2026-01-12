@@ -5,7 +5,7 @@ metadata:
   namespace: harbor
 spec:
   hosts:
-    - harbor.ayame.asnk.io
+    - harbor-nginx.ayame.asnk.io
   gateways:
     - istio-system/harbor-gateway
   http:

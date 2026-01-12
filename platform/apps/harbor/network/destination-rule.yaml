@@ -4,7 +4,7 @@ metadata:
   name: harbor-nginx
   namespace: harbor
 spec:
-  host: harbor.harbor.svc.cluster.local
+  host: harbor-nginx.harbor.svc.cluster.local
   trafficPolicy:
     loadBalancer:
       simple: LEAST_REQUEST
