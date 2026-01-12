@@ -13,10 +13,12 @@ expose:
 externalURL: https://harbor.ayame.asnk.io
 
 portal:
+  replicas: 1
   podSecurityContext: {}
   containerSecurityContext: {}
 
 core:
+  replicas: 1
   podSecurityContext: {}
   containerSecurityContext: {}
 
@@ -26,14 +28,17 @@ jobservice:
   containerSecurityContext: {}
 
 registry:
+  replicas: 1
   podSecurityContext: {}
   containerSecurityContext: {}
 
 trivy:
+  replicas: 1
   podSecurityContext: {}
   containerSecurityContext: {}
 
 database:
+  replicas: 1
   type: internal
   internal:
     existingSecret: harbor-secrets
@@ -41,6 +46,7 @@ database:
     containerSecurityContext: {}
 
 redis:
+  replicas: 1
   type: internal
   internal:
     existingSecret: harbor-secrets
@@ -48,6 +54,7 @@ redis:
     containerSecurityContext: {}
 
 exporter:
+  replicas: 1
   podSecurityContext: {}
   containerSecurityContext: {}
 
