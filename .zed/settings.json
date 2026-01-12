@@ -16,5 +16,8 @@
         "Terraform Vars": {
             "tab_size": 2,
         },
+        "YAML": {
+            "tab_size": 2,
+        },
     },
 }

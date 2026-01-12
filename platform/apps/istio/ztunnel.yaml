@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-    name: ztunnel
-    namespace: istio-system
+  name: ztunnel
+  namespace: istio-system
 spec:
-    template:
-        spec:
-            containers:
-                - args:
-                      - proxy
-                      - ztunnel
-                  env:
-                      - name: ZTUNNEL_CPU_LIMIT
-                        valueFrom:
-                            resourceFieldRef:
-                                divisor: "0"
-                                resource: limits.cpu
+  template:
+    spec:
+      containers:
+        - args:
+            - proxy
+            - ztunnel
+          env:
+            - name: ZTUNNEL_CPU_LIMIT
+              valueFrom:
+                resourceFieldRef:
+                  divisor: "0"
+                  resource: limits.cpu

@@ -2,28 +2,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-    name: ayame-apps
+  name: ayame-apps
 spec:
-    goTemplate: true
-    goTemplateOptions: ["missingkey=error"]
-    generators:
-        - git:
-              repoURL: https://github.com/AsnkOSS/ayame-cluster.git
-              revision: main
-              directories:
-                  - path: platform/apps/*
-    template:
-        metadata:
-            name: "{{ .path.basename }}"
-        spec:
-            project: ayame-project
-            source:
-                repoURL: https://github.com/AsnkOSS/ayame-cluster.git
-                targetRevision: main
-                path: "{{ .path.path }}"
-            destination:
-                name: "ayame-cluster"
-            syncPolicy:
-                syncOptions:
-                    - CreateNamespace=true
-                    - ServerSideApply=true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/AsnkOSS/ayame-cluster.git
+        revision: main
+        directories:
+          - path: platform/apps/*
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+    spec:
+      project: ayame-project
+      source:
+        repoURL: https://github.com/AsnkOSS/ayame-cluster.git
+        targetRevision: main
+        path: "{{ .path.path }}"
+      destination:
+        name: "ayame-cluster"
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
