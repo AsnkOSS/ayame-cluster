@@ -1,3 +1,76 @@
+expose:
+  type: clusterIP
+  tls:
+    enabled: false
+  clusterIP:
+    name: gitea
+    ports:
+      httpPort: 3000
+      sshPort: 22
+    annotations: {}
+    labels: {}
+
+externalURL: https://git.asnk.io
+
+giteaApp:
+  replicas: 1
+  image:
+    registry: docker.gitea.com
+    repository: gitea
+    tag: "1.25.3"
+    rootless: true
+    pullPolicy: IfNotPresent
+
+  security:
+    podSecurityContext:
+      fsGroup: 1000
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+
+  config:
+    domain: git.asnk.io
+    rootUrl: https://git.asnk.io/
+    packagesEnabled: false
+
+  s3:
+    existingSecret: gitea-secrets
+    accessKeyKey: S3_ACCESS_KEY
+    secretKeyKey: S3_SECRET_KEY
+    appIniSecret: gitea-appini
+
+cache:
+  type: internal
+  internal:
+    kind: valkey-cluster
+    replicas: 3
+    usePassword: false
+
+database:
+  type: internal
+  internal:
+    kind: postgresql-ha
+    persistenceSize: 20Gi
+
+persistence:
+  enabled: true
+  create: true
+  mount: true
+  resourcePolicy: keep
+  persistentVolumeClaim:
+    data:
+      existingClaim: gitea-shared-storage
+      storageClass: hcloud-volumes
+      accessMode: ReadWriteOnce
+      size: 50Gi
+      annotations:
+        helm.sh/resource-policy: keep
+
 global:
   storageClass: hcloud-volumes
   imagePullSecrets: []
@@ -29,24 +102,17 @@ service:
     type: ClusterIP
     port: 3000
     clusterIP: None
+    annotations: {}
+    labels: {}
   ssh:
     type: ClusterIP
     port: 22
     clusterIP: None
+    annotations: {}
+    labels: {}
 
 ingress:
   enabled: false
-
-persistence:
-  enabled: true
-  create: true
-  mount: true
-  claimName: gitea-shared-storage
-  size: 50Gi
-  accessModes: ["ReadWriteOnce"]
-  storageClass: hcloud-volumes
-  annotations:
-    helm.sh/resource-policy: keep
 
 gitea:
   config:
@@ -58,7 +124,6 @@ gitea:
       SSH_DOMAIN: git.asnk.io
       SSH_PORT: 22
       SSH_LISTEN_PORT: 2222
-
     packages:
       ENABLED: false
 
