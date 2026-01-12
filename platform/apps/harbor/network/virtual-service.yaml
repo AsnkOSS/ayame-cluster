@@ -2,16 +2,31 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: harbor
-  namespace: harbor
+  namespace: istio-ingress
 spec:
   hosts:
-    - harbor-nginx.ayame.asnk.io
+    - harbor.ayame.asnk.io
   gateways:
-    - istio-system/harbor-gateway
+    - istio-ingress/harbor-gateway
   http:
     - match:
         - uri:
-            prefix: /
+            prefix: /.well-known/acme-challenge/
+          port: 80
+      route:
+        - destination:
+            host: harbor.harbor.svc.cluster.local
+            port:
+              number: 80
+
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        redirectCode: 308
+
+    - match:
+        - port: 443
       route:
         - destination:
             host: harbor.harbor.svc.cluster.local
