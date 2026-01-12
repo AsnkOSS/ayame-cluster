@@ -17,13 +17,6 @@ giteaApp:
   image:
     registry: docker.gitea.com
     repository: gitea
-    tag: "1.25.3"
-    rootless: true
-    pullPolicy: IfNotPresent
-
-  security:
-    podSecurityContext:
-      fsGroup: 1000
     containerSecurityContext:
       allowPrivilegeEscalation: false
       capabilities:
@@ -151,18 +144,17 @@ valkey-cluster:
     replicas: 0
 
 postgresql-ha:
-  enabled: true
-  postgresql:
-    database: gitea
-    username: gitea
-    existingSecret: gitea-secrets
-    auth:
-      secretKeys:
-        adminPasswordKey: ppostgresql-password
-        userPasswordKey: postgresql-postgres-password
-        replicationPasswordKey: repmgr-password
+  enable: true
+  database: gitea
+  username: gitea
+  existingSecret: gitea-secrets
+  auth:
+    secretKeys:
+      postgresPassword: ppostgresql-password
+      password: postgresql-user-password
+      repmgtPassword: postgresql-repmgr-password
   pgpool:
-    existingSecret: gitea-secrets
+    existingSecret: postgresql-gitea-secrets
     auth:
       secretKeys:
         adminPasswordKey: admin-password
