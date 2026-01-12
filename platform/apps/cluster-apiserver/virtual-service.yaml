@@ -13,6 +13,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: kube-apiserver.internal
+            host: cluster-apiserver.internal
             port:
               number: 6443
