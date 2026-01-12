@@ -158,8 +158,8 @@ postgresql-ha:
     existingSecret: gitea-secrets
     auth:
       secretKeys:
-        userPasswordKey: postgresql-password
-        adminPasswordKey: postgresql-postgres-password
+        adminPasswordKey: ppostgresql-password
+        userPasswordKey: postgresql-postgres-password
         replicationPasswordKey: repmgr-password
   pgpool:
     existingSecret: gitea-secrets
