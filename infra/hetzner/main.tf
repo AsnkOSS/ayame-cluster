@@ -107,10 +107,10 @@ module "external-loadbalancer" {
     http_gateway = {
       protocol         = "tcp"
       listen_port      = 80
-      destination_port = 80
+      destination_port = 31583
       health_check = {
         protocol = "tcp"
-        port     = 80
+        port     = 31583
         interval = 10
         timeout  = 5
         retries  = 3
@@ -119,10 +119,10 @@ module "external-loadbalancer" {
     https_gateway = {
       protocol         = "tcp"
       listen_port      = 443
-      destination_port = 443
+      destination_port = 32392
       health_check = {
         protocol = "tcp"
-        port     = 443
+        port     = 32392
         interval = 10
         timeout  = 5
         retries  = 3

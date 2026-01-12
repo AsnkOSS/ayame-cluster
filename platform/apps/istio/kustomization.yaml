@@ -62,3 +62,4 @@ patches:
   - path: patches/ztunnel.yaml
   - path: patches/istio-validator-istio-system.yaml
   - path: patches/istiod-default-validator.yaml
+  - path: patches/istio-ingressgateway.yaml
