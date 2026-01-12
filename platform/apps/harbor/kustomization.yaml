@@ -4,9 +4,18 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
+  - secrets.yaml
+  - network/certificate.yaml
   - network/gateway.yaml
-  - network/service-entry.yaml
   - network/virtual-service.yaml
+  - network/service-entry.yaml
   - network/destination-rule.yaml
 
-namespace: cluster-apiserver
+helmCharts:
+  - name: harbor
+    repo: https://helm.goharbor.io
+    version: 1.18.1
+    releaseName: harbor
+    namespace: harbor
+    includeCRDs: false
+    valuesFile: values.yaml

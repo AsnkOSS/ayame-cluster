@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: harbor-gateway
+  namespace: harbor
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    # HTTP -> HTTPS redirect
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - harbor.ayame.asnk.io
+      tls:
+        httpsRedirect: true
+
+    # HTTPS terminate at ingressgateway
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - harbor.ayame.asnk.io
+      tls:
+        mode: SIMPLE
+        credentialName: harbor-tls

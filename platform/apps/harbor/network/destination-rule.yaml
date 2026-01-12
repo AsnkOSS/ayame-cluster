@@ -1,0 +1,43 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: harbor-nginx
+  namespace: harbor
+spec:
+  host: harbor-nginx.harbor.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_REQUEST
+    connectionPool:
+      tcp:
+        maxConnections: 200
+        connectTimeout: 5s
+      http:
+        http1MaxPendingRequests: 1024
+        maxRequestsPerConnection: 0
+        idleTimeout: 60s
+        maxRetries: 3
+    outlierDetection:
+      consecutive5xxErrors: 5
+      interval: 5s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: hetzner-s3
+  namespace: harbor
+spec:
+  host: fsn1.your-objectstorage.com
+  trafficPolicy:
+    tls:
+      mode: SIMPLE
+      sni: fsn1.your-objectstorage.com
+    connectionPool:
+      tcp:
+        maxConnections: 200
+        connectTimeout: 5s
+      http:
+        idleTimeout: 60s

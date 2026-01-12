@@ -1,0 +1,91 @@
+expose:
+  type: clusterIP
+  tls:
+    enabled: false
+  clusterIP:
+    name: harbor
+    ports:
+      httpPort: 80
+      httpsPort: 443
+    annotations: {}
+    labels: {}
+
+externalURL: https://harbor.ayame.asnk.io
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+
+  persistentVolumeClaim:
+    database:
+      existingClaim: ""
+      storageClass: hcloud-volumes
+      subPath: ""
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      annotations: {}
+
+    redis:
+      existingClaim: ""
+      storageClass: hcloud-volumes
+      subPath: ""
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      annotations: {}
+
+    trivy:
+      existingClaim: ""
+      storageClass: hcloud-volumes
+      subPath: ""
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      annotations: {}
+
+    jobservice:
+      jobLog:
+        existingClaim: ""
+        storageClass: hcloud-volumes
+        subPath: ""
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        annotations: {}
+
+    registry:
+      existingClaim: ""
+      storageClass: ""
+      subPath: ""
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      annotations: {}
+
+  imageChartStorage:
+    disableredirect: false
+    type: s3
+    s3:
+      regionendpoint: https://fsn1.your-objectstorage.com
+      bucket: ayame-harbor
+      region: fsn1
+      existingSecret: harbor-secrets
+      secure: true
+      v4auth: true
+      pathstyle: true
+
+database:
+  type: internal
+  internal:
+    existingSecret: harbor-secrets
+    shmSizeLimit: 512Mi
+
+redis:
+  type: internal
+  internal:
+    existingSecret: harbor-secrets
+
+existingSecretAdminPassword: harbor-secrets
+existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
+
+notary:
+  enabled: false
+
+chartmuseum:
+  enabled: false

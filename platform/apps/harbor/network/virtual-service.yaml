@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  hosts:
+    - harbor.ayame.asnk.io
+  gateways:
+    - istio-system/harbor-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: harbor-nginx.harbor.svc.cluster.local
+            port:
+              number: 80
