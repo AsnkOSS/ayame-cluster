@@ -155,8 +155,8 @@ postgresql-ha:
   postgresql:
     database: gitea
     username: gitea
-    existingSecret: gitea-secret
+    existingSecret: gitea-secrets
   pgpool:
-    existingSecret: gitea-secret
+    existingSecret: gitea-secrets
   persistence:
     size: 20Gi
