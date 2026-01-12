@@ -1,0 +1,25 @@
+apiVersion: kiali.io/v1alpha1
+kind: Kiali
+metadata:
+  name: kiali
+  namespace: istio-system
+spec:
+  auth:
+    strategy: anonymous
+
+  deployment:
+    accessible_namespaces:
+      - "**"
+
+  external_services:
+    prometheus:
+      url: "http://prometheus.istio-system:9090"
+
+    # grafana:
+    #   enabled: true
+    #   url: "http://grafana.istio-system:3000"
+
+    istio:
+      istio_component_namespaces:
+        istio: istio-system
+      istiod_deployment_name: istiod
