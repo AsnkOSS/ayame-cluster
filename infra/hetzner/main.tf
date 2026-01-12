@@ -98,7 +98,7 @@ module "external-loadbalancer" {
       destination_port = 30080
       health_check = {
         protocol = "http"
-        port     = 35021
+        port     = 30021
         interval = 10
         timeout  = 5
         retries  = 3
@@ -116,7 +116,7 @@ module "external-loadbalancer" {
       destination_port = 30443
       health_check = {
         protocol = "http"
-        port     = 35021
+        port     = 30021
         interval = 10
         timeout  = 5
         retries  = 3
