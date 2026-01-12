@@ -4,6 +4,7 @@ metadata:
   name: harbor-jobservice
   namespace: harbor
 spec:
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
