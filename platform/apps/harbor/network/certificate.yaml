@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: harbor-tls
   issuerRef:
-    name: letsencrypt
     kind: ClusterIssuer
+    name: letsencrypt
   dnsNames:
     - harbor.ayame.asnk.io
