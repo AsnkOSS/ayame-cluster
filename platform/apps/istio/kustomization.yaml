@@ -7,6 +7,13 @@ resources:
   - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/prometheus.yaml
   - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/kiali.yaml
 
+patches:
+  - path: patches/ztunnel.yaml
+  - path: patches/istio-validator-istio-system.yaml
+  - path: patches/istiod-default-validator.yaml
+  - path: patches/istio-ingressgateway.yaml
+  - path: patches/kiali.yaml
+
 helmCharts:
   # Istio base (CRDs)
   - name: base
@@ -50,9 +57,3 @@ helmCharts:
     valuesInline:
       service:
         type: LoadBalancer
-
-patches:
-  - path: patches/ztunnel.yaml
-  - path: patches/istio-validator-istio-system.yaml
-  - path: patches/istiod-default-validator.yaml
-  - path: patches/istio-ingressgateway.yaml
