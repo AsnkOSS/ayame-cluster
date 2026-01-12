@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - kiali-cr.yaml
+  - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/kiali.yaml
 
 helmCharts:
   # Istio base (CRDs)
@@ -49,14 +49,6 @@ helmCharts:
     valuesInline:
       service:
         type: LoadBalancer
-
-  # Kiali operator
-  - name: kiali-operator
-    repo: https://kiali.org/helm-charts
-    version: 2.20.0
-    releaseName: kiali-operator
-    namespace: kiali-operator
-    includeCRDs: true
 
 patches:
   - path: patches/ztunnel.yaml
