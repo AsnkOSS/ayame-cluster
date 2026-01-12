@@ -57,3 +57,6 @@ helmCharts:
       releaseName: kiali-operator
       namespace: kiali-operator
       includeCRDs: true
+
+patches:
+    - path: ./ztunnel.yaml
