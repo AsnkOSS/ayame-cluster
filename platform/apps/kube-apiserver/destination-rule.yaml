@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: kube-apiserver-dr
-  namespace: istio-system
+  namespace: kube-apiserver
 spec:
   host: kube-apiserver.internal
   trafficPolicy:

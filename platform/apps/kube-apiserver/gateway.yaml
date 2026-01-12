@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: kube-apiserver-gw
-  namespace: kube-api-server
+  namespace: kube-apiserver
 spec:
   selector:
     istio: ingressgateway
@@ -15,4 +15,4 @@ spec:
         mode: SIMPLE
         credentialName: kube-apiserver-public-tls
       hosts:
-        - cluster-api-server.ayame.asnk.io
+        - cluster-apiserver.ayame.asnk.io

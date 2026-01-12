@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
   name: kube-apiserver-se
-  namespace: istio-system
+  namespace: kube-apiserver
 spec:
   hosts:
     - kube-apiserver.internal
