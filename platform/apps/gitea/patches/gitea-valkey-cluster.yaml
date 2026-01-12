@@ -5,16 +5,10 @@ metadata:
   namespace: gitea
 spec:
   volumeClaimTemplates:
-    - metadata:
-        name: valkey-data
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         labels:
           app.kubernetes.io/instance: gitea
           app.kubernetes.io/name: valkey-cluster
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        storageClassName: hcloud-volumes
-        resources:
-          requests:
-            storage: 8Gi
-        volumeMode: Filesystem
+        name: valkey-data
