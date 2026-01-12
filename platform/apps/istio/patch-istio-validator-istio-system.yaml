@@ -4,4 +4,4 @@ metadata:
   name: istio-validator-istio-system
 webhooks:
   - name: rev.validation.istio.io
-    failurePolicy: Ignore
+    failurePolicy: Fail

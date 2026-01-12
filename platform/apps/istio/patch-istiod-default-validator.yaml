@@ -4,4 +4,4 @@ metadata:
   name: istiod-default-validator
 webhooks:
   - name: validation.istio.io
-    failurePolicy: Ignore
+    failurePolicy: Fail
