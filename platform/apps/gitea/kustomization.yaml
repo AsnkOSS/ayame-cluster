@@ -4,6 +4,13 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
+  - secret.yaml
+  - config.yaml
+  - network/cerificate.yaml
+  - network/destination-rule.yaml
+  - network/gateway.yaml
+  - network/service-entry.yaml
+  - network/vireual-service.yaml
 
 helmCharts:
   - name: gitea
