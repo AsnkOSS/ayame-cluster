@@ -19,7 +19,7 @@ resources:
   - meilisearch/meilisearch-service.yaml
   - meilisearch/meilisearch-deployment.yaml
   - network/certificate.yaml
-  - network/destination-rule.yaml
+  # - network/destination-rule.yaml
   - network/gateway.yaml
-  - network/service-entry.yaml
+  # - network/service-entry.yaml
   - network/virtual-service.yaml
