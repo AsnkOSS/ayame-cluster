@@ -89,12 +89,17 @@ spec:
               readOnly: true
       containers:
         - name: gitea
-          image: docker.gitea.com/gitea:1.25.3
+          image: docker.gitea.com/gitea:1.25.3-rootless
           ports:
             - containerPort: 3000
               name: http
             - containerPort: 22
               name: ssh
+          args:
+            - "gitea"
+            - "--work-path /data/gitea"
+            - "--custom-path /data/gitea"
+            - "--config-path /data/gitea/conf/app.ini"
           env:
             - name: USER_UID
               value: "1000"
