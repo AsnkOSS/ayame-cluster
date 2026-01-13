@@ -32,7 +32,7 @@ configMapGenerator:
       - rules=prometheus/configs/rules.yml
 
 helmCharts:
-  # Istio base (CRDs)
+  # base
   - name: base
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
@@ -45,6 +45,13 @@ helmCharts:
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
     releaseName: istiod
+    namespace: istio-system
+
+  # cni
+  - name: gateway
+    repo: https://istio-release.storage.googleapis.com/charts
+    version: 1.28.2
+    releaseName: istio-cni
     namespace: istio-system
 
   # ingress gateway
