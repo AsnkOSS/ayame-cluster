@@ -25,7 +25,6 @@ generatorOptions:
 configMapGenerator:
   - name: prometheus
     namespace: istio-system
-    behavior: replace
     files:
       - prometheus.yml=prometheus/configs/prometheus.yml
       - alerting_rules.yml=prometheus/configs/alerting_rules.yml
