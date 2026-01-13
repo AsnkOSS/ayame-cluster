@@ -6,10 +6,10 @@ namespace: "gitea"
 replicaCount: 1
 
 strategy:
-  type: "RollingUpdate"
+  type: RollingUpdate
   rollingUpdate:
-    maxSurge: "100%"
-    maxUnavailable: 0
+    maxUnavailable: 1
+    maxSurge: 0
 
 clusterDomain: cluster.local
 
@@ -77,10 +77,6 @@ gitea:
     server:
       SSH_PORT: 2222
       SSH_LISTEN_PORT: 22
-
-  additionalConfigSources:
-    - secret:
-        secretName: gitea-appini
 
   ssh:
     logLevel: "INFO"
