@@ -6,7 +6,7 @@ metadata:
 spec:
   serviceName: gitea-redis
   replicas: 1
-  strategy:
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 0
