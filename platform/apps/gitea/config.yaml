@@ -38,7 +38,7 @@ stringData:
 
     [queue]
     TYPE = redis
-    Conn_STR = redis://gitea-redis.gitea.svc.cluster.local:6379/0
+    CONN_STR = redis://gitea-redis.gitea.svc.cluster.local:6379/0
 
     [admin]
     DEFAULT_EMAIL_NOTIFICATIONS = enabled
