@@ -19,13 +19,35 @@ spec:
       labels:
         app: gitea-redis
     spec:
+      initContainers:
+        - name: init-redis-dir
+          image: alpine:3.19
+          command: ["sh", "-c"]
+          args:
+            - |
+              set -eu
+              mkdir -p /data/redis
+              chown -R 1000:1000 /data/redis
+              chmod -R g+rwX /data/redis
+          volumeMounts:
+            - name: redisdata
+              mountPath: /data
+
+      securityContext:
+        fsGroup: 1000
+
       containers:
         - name: redis
           image: redis:8-alpine
           ports:
             - containerPort: 6379
               name: redis
-          args: ["redis-server", "--appendonly", "yes"]
+          args:
+            - "redis-server"
+            - "--dir"
+            - "/data/redis"
+            - "--appendonly"
+            - "yes"
           volumeMounts:
             - name: redisdata
               mountPath: /data
@@ -39,6 +61,9 @@ spec:
               port: 6379
             initialDelaySeconds: 20
             periodSeconds: 10
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
       volumes:
         - name: redisdata
           persistentVolumeClaim:

@@ -35,9 +35,11 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: POSTGRES_PASSWORD
+            - name: PGDATA
+              value: "/var/lib/postgresql/data"
           volumeMounts:
             - name: pgdata
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
           readinessProbe:
             exec:
               command:
