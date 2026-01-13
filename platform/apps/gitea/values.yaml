@@ -66,12 +66,6 @@ signing:
   existingSecret: ""
 
 gitea:
-  admin:
-    username: admin
-    password: E814DrN4kcfzH46s60CJdkQf
-    email: "sugar@sne.moe"
-    passwordMode: initialOnlyRequireReset
-
   config:
     APP_NAME: "Asai Git"
     server:
