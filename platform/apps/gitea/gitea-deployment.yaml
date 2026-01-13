@@ -1,0 +1,129 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: gitea
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      securityContext:
+        fsGroup: 1000
+      initContainers:
+        - name: init-dirs
+          image: alpine:3.23
+          command: ["sh", "-c"]
+          args:
+            - |
+              set -eu
+              mkdir -p /data/gitea/conf /data/gitea/git /data/gitea/log
+              chown -R 1000:1000 /data/gitea
+          volumeMounts:
+            - name: gitea-data
+              mountPath: /data
+        - name: render-appini
+          image: alpine:3.23
+          command: ["sh", "-c"]
+          args:
+            - |
+              set -eu
+              apk add --no-cache gettext
+              envsubst < /tmp/app.ini > /data/gitea/conf/app.ini
+              chown 1000:1000 /data/gitea/conf/app.ini
+              chmod 600 /data/gitea/conf/app.ini
+          env:
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: DATABASE_PASSWORD
+            - name: GITEA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: GITEA_SECRET_KEY
+            - name: CF_TURNSTILE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: CF_TURNSTILE_SECRET
+            - name: CF_TURNSTILE_SITEKEY
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: CF_TURNSTILE_SITEKEY
+            - name: METRICS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: METRICS_TOKEN
+            - name: MINIO_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: MINIO_ACCESS_KEY_ID
+            - name: MINIO_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: MINIO_SECRET_ACCESS_KEY
+          volumeMounts:
+            - name: gitea-data
+              mountPath: /data
+            - name: appini
+              mountPath: /in
+              readOnly: true
+      containers:
+        - name: gitea
+          image: docker.gitea.com/gitea:1.25.3-rootless
+          ports:
+            - containerPort: 3000
+              name: http
+            - containerPort: 22
+              name: ssh
+          env:
+            - name: USER_UID
+              value: "1000"
+            - name: USER_GID
+              value: "1000"
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: DATABASE_PASSWORD
+          volumeMounts:
+            - name: gitea-data
+              mountPath: /data
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+      volumes:
+        - name: gitea-data
+          persistentVolumeClaim:
+            claimName: gitea-data
+        - name: appini
+          secret:
+            secretName: gitea-appini
+            items:
+              - key: app.ini
+                path: /tmp/app.ini

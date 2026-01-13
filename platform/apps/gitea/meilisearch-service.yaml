@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea-meilisearch
+  namespace: gitea
+spec:
+  selector:
+    app: gitea-meilisearch
+  ports:
+    - name: http
+      port: 7700
+      targetPort: 7700
+  type: ClusterIP
