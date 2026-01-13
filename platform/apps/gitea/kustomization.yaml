@@ -12,7 +12,6 @@ resources:
 
 patches:
   - path: patches/gitea-valkey-cluster.yaml
-  - path: patches/gitea-deployment.yaml
 
 helmCharts:
   - name: gitea
