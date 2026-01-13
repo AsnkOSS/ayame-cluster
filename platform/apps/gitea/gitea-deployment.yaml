@@ -27,7 +27,7 @@ spec:
           args:
             - |
               set -eu
-              mkdir -p /data/gitea /data/app.ini
+              mkdir -p /data/gitea
               chown -R 1000:1000 /data/gitea
           volumeMounts:
             - name: gitea-data
