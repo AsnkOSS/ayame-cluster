@@ -61,16 +61,6 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: GITEA_EMAIL_PASSWORD
-            - name: CF_TURNSTILE_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: gitea-secrets
-                  key: CF_TURNSTILE_SECRET
-            - name: CF_TURNSTILE_SITEKEY
-              valueFrom:
-                secretKeyRef:
-                  name: gitea-secrets
-                  key: CF_TURNSTILE_SITEKEY
             - name: HCAPTCHA_SECRET
               valueFrom:
                 secretKeyRef:
