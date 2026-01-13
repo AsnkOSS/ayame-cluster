@@ -5,5 +5,9 @@ metadata:
   namespace: harbor
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1

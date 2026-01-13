@@ -14,8 +14,6 @@ resources:
 patches:
   - path: patches/harbor-core.yaml
   - path: patches/harbor-jobservice.yaml
-  - path: patches/harbor-nginx.yaml
-  - path: patches/harbor-portal.yaml
   - path: patches/harbor-registry.yaml
 
 helmCharts:
