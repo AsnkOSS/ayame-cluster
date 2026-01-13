@@ -56,6 +56,11 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: GITEA_SECRET_KEY
+            - name: GITEA_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: GITEA_JWT_SECRET
             - name: GITEA_EMAIL_PASSWORD
               valueFrom:
                 secretKeyRef:

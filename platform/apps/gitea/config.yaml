@@ -106,6 +106,10 @@ stringData:
     ENABLED_ISSUE_BY_REPOSITORY = true
     TOKEN                       = ${METRICS_TOKEN}
 
+    [oauth2]
+    ENABLED = true
+    JWT_SECRET = ${GITEA_JWT_SECRET}
+
     [packages]
     ENABLED = false
 
