@@ -32,6 +32,9 @@ spec:
           volumeMounts:
             - name: gitea-data
               mountPath: /data
+            - name: appini
+              mountPath: /in
+              readOnly: true
         - name: render-appini
           image: alpine:3.23
           command: ["sh", "-c"]
@@ -39,7 +42,7 @@ spec:
             - |
               set -eu
               apk add --no-cache gettext
-              envsubst < /tmp/app.ini > /data/gitea/conf/app.ini
+              envsubst < /in/app.ini > /data/gitea/conf/app.ini
               chown 1000:1000 /data/gitea/conf/app.ini
               chmod 600 /data/gitea/conf/app.ini
           env:
@@ -126,4 +129,4 @@ spec:
             secretName: gitea-appini
             items:
               - key: app.ini
-                path: /tmp/app.ini
+                path: app.ini
