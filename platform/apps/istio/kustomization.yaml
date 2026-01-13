@@ -5,14 +5,33 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - kiali-cr.yaml
-  - https://raw.githubusercontent.com/istio/istio/release-1.28/samples/addons/prometheus.yaml
+  - prometheus/cluster-role.yaml
+  - prometheus/cluster-role-binding.yaml
+  - prometheus/deploymant.yaml
+  - prometheus/service.yaml
+  - prometheus/service-account.yaml
 
 patches:
-  - path: patches/ztunnel.yaml
   - path: patches/istio-validator-istio-system.yaml
   - path: patches/istiod-default-validator.yaml
   - path: patches/istio-ingressgateway.yaml
   - path: patches/istio-ingressgateway-env.yaml
+  - path: patches/prometheus-config-map.yaml
+  - path: patches/ztunnel.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: prometheus
+    namespace: istio-system
+    behavior: replace
+    files:
+      - prometheus.yml=prometheus/configs/prometheus.yml
+      - alerting_rules.yml=prometheus/configs/alerting_rules.yml
+      - alerts=prometheus/configs/alerts.yml
+      - recording_rules.yml=prometheus/configs/recording_rules.yml
+      - rules=prometheus/configs/rules.yml
 
 helmCharts:
   # Istio base (CRDs)
