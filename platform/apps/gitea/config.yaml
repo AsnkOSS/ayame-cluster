@@ -34,7 +34,10 @@ stringData:
 
     [indexer]
     ISSUE_INDEXER_TYPE = meilisearch
-    ISSUE_INDEXER_CONN_STR = http://${MEILI_MASTER_KEY}@gitea-meilisearch.gitea.svc.cluster.local:7700
+
+    [indexer.meilisearch]
+    URL = http://gitea-meilisearch.gitea.svc.cluster.local:7700
+    API_KEY = ${MEILI_MASTER_KEY}
 
     [queue]
     TYPE = redis
