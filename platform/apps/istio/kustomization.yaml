@@ -46,7 +46,6 @@ helmCharts:
     version: 1.28.2
     releaseName: istiod
     namespace: istio-system
-    valuesFile: values/istiod.yaml
 
   # cni
   - name: gateway
@@ -61,7 +60,13 @@ helmCharts:
     version: 1.28.2
     releaseName: istio-ingressgateway
     namespace: istio-ingress
-    valuesFile: values/ingressgateway.yaml
+
+  # egress gateway
+  - name: gateway
+    repo: https://istio-release.storage.googleapis.com/charts
+    version: 1.28.2
+    releaseName: istio-egressgateway
+    namespace: istio-ingress
 
   # Kiali operator
   - name: kiali-operator
