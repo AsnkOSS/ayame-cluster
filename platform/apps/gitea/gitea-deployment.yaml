@@ -56,6 +56,11 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: GITEA_SECRET_KEY
+            - name: GITEA_EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: GITEA_EMAIL_PASSWORD
             - name: CF_TURNSTILE_SECRET
               valueFrom:
                 secretKeyRef:

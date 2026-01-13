@@ -33,7 +33,7 @@ stringData:
     SSL_MODE = disable
 
     [indexer]
-    ISSUE_INDEXER_TYPE = db
+    ISSUE_INDEXER_TYPE = meilisearch
     ISSUE_INDEXER_CONN_STR = http://${MEILI_MASTER_KEY}@gitea-meilisearch.gitea.svc.cluster.local:7700
 
     [queue]
@@ -80,7 +80,7 @@ stringData:
     SMTP_ADDR = smtp.resend.com
     SMTP_PORT = 587
     USER      = resend
-    PASSWD    = re_hvctut8D_7cVmu27xZrt9JNnmBG8yYt7S
+    PASSWD    = ${GITEA_EMAIL_PASSWORD}
     FROM      = Asai Git <git@violet.sne.moe>
 
     [cache]
@@ -116,13 +116,14 @@ stringData:
     STORAGE_TYPE = hcloud
 
     [storage.hcloud]
-    STORAGE_TYPE            = minio
-    MINIO_ENDPOINT          = fsn1.your-objectstorage.com
-    MINIO_ACCESS_KEY_ID     = ${MINIO_ACCESS_KEY_ID}
-    MINIO_SECRET_ACCESS_KEY = ${MINIO_SECRET_ACCESS_KEY}
-    MINIO_BUCKET            = ayame-gitea
-    MINIO_LOCATION          = eu-central
-    MINIO_USE_SSL           = true
+    STORAGE_TYPE             = minio
+    MINIO_ENDPOINT           = fsn1.your-objectstorage.com
+    MINIO_ACCESS_KEY_ID      = ${MINIO_ACCESS_KEY_ID}
+    MINIO_SECRET_ACCESS_KEY  = ${MINIO_SECRET_ACCESS_KEY}
+    MINIO_BUCKET             = ayame-gitea
+    MINIO_LOCATION           = eu-central
+    MINIO_USE_SSL            = true
+    MINIO_BUCKET_LOOKUP_TYPE = path
 
     [storage.repo-archive]
     STORAGE_TYPE = hcloud
