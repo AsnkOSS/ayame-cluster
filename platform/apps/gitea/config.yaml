@@ -72,7 +72,7 @@ stringData:
     ENABLED = true
 
     [webhook]
-    ALLOWED_HOST_LIST = *.sne.moe,*.asnk.io
+    ALLOWED_HOST_LIST = ci.sne.moe,ci.asnk.io
 
     [mailer]
     ENABLED   = true
