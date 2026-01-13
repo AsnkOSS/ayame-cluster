@@ -57,10 +57,10 @@ helmCharts:
         ipFamilyPolicy: RequireDualStack
 
   # cni
-  - name: istio-cni
+  - name: cni
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
-    releaseName: cni
+    releaseName: istio-cni
     namespace: istio-system
 
   # ingress gateway
