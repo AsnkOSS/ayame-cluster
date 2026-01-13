@@ -4,7 +4,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - secret.yaml
+  - secrets.yaml
   - config.yaml
   - postgres-service.yaml
   - postgres-stateful-set.yaml
