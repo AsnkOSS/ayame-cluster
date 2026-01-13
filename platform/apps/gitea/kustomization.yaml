@@ -22,6 +22,5 @@ resources:
   - network/destination-rule.yaml
   - network/gateway.yaml
   - network/http-route.yaml
-  - network/network-policy.yaml
   - network/service-entry.yaml
   - network/virtual-service.yaml

@@ -5,3 +5,5 @@ metadata:
   name: gitea
   labels:
     istio.io/dataplane-mode: ambient
+  annotations:
+    ambient.istio.io/dns-capture: "false"
