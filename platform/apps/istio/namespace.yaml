@@ -11,9 +11,4 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: istio-egress
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: kiali-operator
