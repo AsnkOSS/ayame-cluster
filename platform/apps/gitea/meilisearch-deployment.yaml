@@ -1,16 +1,16 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: gitea-meilisearch
   namespace: gitea
 spec:
-  serviceName: gitea-meilisearch
   replicas: 1
-  updateStrategy:
+  revisionHistoryLimit: 3
+  strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: gitea-meilisearch
@@ -51,12 +51,7 @@ spec:
               port: 7700
             initialDelaySeconds: 30
             periodSeconds: 10
-  volumeClaimTemplates:
-    - metadata:
-        name: meili-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: hcloud-volumes
-        resources:
-          requests:
-            storage: 10Gi
+      volumes:
+        - name: meili-data
+          persistentVolumeClaim:
+            claimName: gitea-meilisearch-data

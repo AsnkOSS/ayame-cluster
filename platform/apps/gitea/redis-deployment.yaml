@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: gitea-redis
   namespace: gitea
 spec:
-  serviceName: gitea-redis
   replicas: 1
-  updateStrategy:
+  revisionHistoryLimit: 3
+  strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 0
@@ -39,12 +39,7 @@ spec:
               port: 6379
             initialDelaySeconds: 20
             periodSeconds: 10
-  volumeClaimTemplates:
-    - metadata:
-        name: redisdata
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: hcloud-volumes
-        resources:
-          requests:
-            storage: 10Gi
+      volumes:
+        - name: redisdata
+          persistentVolumeClaim:
+            claimName: gitea-redis-data

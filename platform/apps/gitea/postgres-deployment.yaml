@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: gitea-postgres
   namespace: gitea
 spec:
-  serviceName: gitea-postgres
   replicas: 1
-  updateStrategy:
+  revisionHistoryLimit: 3
+  strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 0
@@ -50,12 +50,7 @@ spec:
                 ["sh", "-c", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
             initialDelaySeconds: 30
             periodSeconds: 10
-  volumeClaimTemplates:
-    - metadata:
-        name: pgdata
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: hcloud-volumes
-        resources:
-          requests:
-            storage: 20Gi
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: gitea-postgres-data
