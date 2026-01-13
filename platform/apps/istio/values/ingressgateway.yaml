@@ -1,5 +1,3 @@
 gateways:
   istio-ingressgateway:
     ipFamilyPolicy: RequireDualStack
-  istio-egressgateway:
-    ipFamilyPolicy: RequireDualStack

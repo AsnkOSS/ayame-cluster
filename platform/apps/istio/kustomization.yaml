@@ -61,7 +61,7 @@ helmCharts:
     version: 1.28.2
     releaseName: istio-ingressgateway
     namespace: istio-ingress
-    valuesFile: values/gateway.yaml
+    valuesFile: values/ingressgateway.yaml
 
   # Kiali operator
   - name: kiali-operator
