@@ -73,16 +73,6 @@ helmCharts:
       service:
         ipFamilyPolicy: RequireDualStack
 
-  # egress gateway
-  - name: gateway
-    repo: https://istio-release.storage.googleapis.com/charts
-    version: 1.28.2
-    releaseName: istio-egressgateway
-    namespace: istio-egress
-    valuesInline:
-      service:
-        ipFamilyPolicy: RequireDualStack
-
   # Kiali operator
   - name: kiali-operator
     repo: https://kiali.org/helm-charts
