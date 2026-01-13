@@ -128,6 +128,18 @@ module "external-loadbalancer" {
         }
       }
     }
+    gitea_ssh = {
+      protocol         = "tcp"
+      listen_port      = 2222
+      destination_port = 30122
+      health_check = {
+        protocol = "tcp"
+        port     = 30122
+        interval = 10
+        timeout  = 5
+        retries  = 3
+      }
+    }
   }
 }
 

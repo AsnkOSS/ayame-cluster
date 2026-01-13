@@ -11,19 +11,28 @@ spec:
 
   http:
     - match:
-        - uri:
-            prefix: /
+        - port: 80
+          uri:
+            prefix: /.well-known/acme-challenge/
       route:
         - destination:
             host: gitea.gitea.svc.cluster.local
             port:
               number: 3000
 
-  tcp:
     - match:
-        - port: 2222
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+        redirectCode: 308
+
+    - match:
+        - port: 443
+          uri:
+            prefix: /
       route:
         - destination:
             host: gitea.gitea.svc.cluster.local
             port:
-              number: 2222
+              number: 3000

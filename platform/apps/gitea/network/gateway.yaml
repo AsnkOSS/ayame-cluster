@@ -7,7 +7,13 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-    # HTTPS Web
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - git.asnk.io
+
     - port:
         number: 443
         name: https
@@ -15,13 +21,5 @@ spec:
       tls:
         mode: SIMPLE
         credentialName: gitea-tls
-      hosts:
-        - git.asnk.io
-
-    # SSH (TCP)
-    - port:
-        number: 2222
-        name: ssh
-        protocol: TCP
       hosts:
         - git.asnk.io
