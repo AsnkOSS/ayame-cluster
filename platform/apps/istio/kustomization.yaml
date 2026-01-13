@@ -60,7 +60,7 @@ helmCharts:
   - name: istio-cni
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
-    releaseName: istio-cni
+    releaseName: cni
     namespace: istio-system
 
   # ingress gateway
@@ -78,7 +78,7 @@ helmCharts:
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
     releaseName: istio-egressgateway
-    namespace: istio-ingress
+    namespace: istio-egress
     valuesInline:
       service:
         ipFamilyPolicy: RequireDualStack
