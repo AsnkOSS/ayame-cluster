@@ -1,9 +1,0 @@
-meshConfig:
-  defaultConfig:
-    proxyMetadata:
-      ISTIO_DUAL_STACK: "true"
-
-pilot:
-  env:
-    ISTIO_DUAL_STACK: "true"
-  ipFamilyPolicy: RequireDualStack

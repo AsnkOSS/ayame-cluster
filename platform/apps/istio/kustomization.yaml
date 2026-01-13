@@ -64,11 +64,21 @@ helmCharts:
     namespace: istio-system
 
   # ingress gateway
-  - name: gateway
+  - name: istio-ingressgateway
     repo: https://istio-release.storage.googleapis.com/charts
     version: 1.28.2
     releaseName: istio-ingressgateway
     namespace: istio-ingress
+    valuesInline:
+      service:
+        ipFamilyPolicy: RequireDualStack
+
+  # egress gateway
+  - name: istio-egressgateway
+    repo: https://istio-release.storage.googleapis.com/charts
+    version: 1.28.2
+    releaseName: istio-egressgateway
+    namespace: istio-egress
     valuesInline:
       service:
         ipFamilyPolicy: RequireDualStack
