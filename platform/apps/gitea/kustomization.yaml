@@ -6,12 +6,15 @@ resources:
   - namespace.yaml
   - secrets.yaml
   - config.yaml
-  - postgres-service.yaml
-  - postgres-stateful-set.yaml
-  - redis-service.yaml
-  - redis-stateful-set.yaml
   - gitea-pvc.yaml
   - gitea-service.yaml
   - gitea-deployment.yaml
+  - postgres-pvc.yaml
+  - postgres-service.yaml
+  - postgres-deployment.yaml
+  - redis-pvc.yaml
+  - redis-service.yaml
+  - redis-deployment.yaml
+  - meilisearch-pvc.yaml
   - meilisearch-service.yaml
-  - meilisearch-stateful-set.yaml
+  - meilisearch-deployment.yaml
