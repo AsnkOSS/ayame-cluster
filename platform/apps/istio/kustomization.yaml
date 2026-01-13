@@ -46,6 +46,7 @@ helmCharts:
     version: 1.28.2
     releaseName: istiod
     namespace: istio-system
+    valuesFile: values/istiod.yaml
 
   # cni
   - name: gateway
@@ -53,6 +54,7 @@ helmCharts:
     version: 1.28.2
     releaseName: istio-cni
     namespace: istio-system
+    valuesFile: values/gateway.yaml
 
   # ingress gateway
   - name: gateway
