@@ -3,7 +3,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: gitea
-  labels:
-    istio.io/dataplane-mode: ambient
-  annotations:
-    traffic.sidecar.istio.io/excludeOutboundPorts: "53"
