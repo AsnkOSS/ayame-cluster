@@ -70,7 +70,7 @@ gitea:
     APP_NAME: "Asai Git"
     server:
       SSH_PORT: 2222
-      SSH_LISTEN_PORT: 22
+      SSH_LISTEN_PORT: 2222
 
   ssh:
     logLevel: "INFO"
