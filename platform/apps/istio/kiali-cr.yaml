@@ -13,4 +13,4 @@ spec:
 
   external_services:
     prometheus:
-      url: "http://prometheus.istio-system:9090"
+      url: "http://prometheus.istio-system.svc.cluster.local:9090"
