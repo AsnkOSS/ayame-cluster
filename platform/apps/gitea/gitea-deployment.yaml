@@ -27,7 +27,7 @@ spec:
           args:
             - |
               set -eu
-              mkdir -p /data/gitea/conf /data/gitea/git /data/gitea/log
+              mkdir -p /data/gitea /etc/gitea
               chown -R 1000:1000 /data/gitea
           volumeMounts:
             - name: gitea-data
@@ -42,9 +42,9 @@ spec:
             - |
               set -eu
               apk add --no-cache gettext
-              envsubst < /in/app.ini > /data/gitea/conf/app.ini
-              chown 1000:1000 /data/gitea/conf/app.ini
-              chmod 600 /data/gitea/conf/app.ini
+              envsubst < /in/app.ini > /etc/gitea/app.ini
+              chown 1000:1000 /etc/gitea/app.ini
+              chmod 600 /etc/gitea/app.ini
           env:
             - name: DATABASE_PASSWORD
               valueFrom:
@@ -95,14 +95,6 @@ spec:
               name: http
             - containerPort: 22
               name: ssh
-          args:
-            - "gitea"
-            - "--work-path"
-            - "/data/gitea"
-            - "--custom-path"
-            - "/data/gitea"
-            - "--config-path"
-            - "/data/gitea/conf/app.ini"
           env:
             - name: USER_UID
               value: "1000"
