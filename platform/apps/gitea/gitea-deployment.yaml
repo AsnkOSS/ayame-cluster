@@ -97,9 +97,12 @@ spec:
               name: ssh
           args:
             - "gitea"
-            - "--work-path /data/gitea"
-            - "--custom-path /data/gitea"
-            - "--config-path /data/gitea/conf/app.ini"
+            - "--work-path"
+            - "/data/gitea"
+            - "--custom-path"
+            - "/data/gitea"
+            - "--config-path"
+            - "/data/gitea/conf/app.ini"
           env:
             - name: USER_UID
               value: "1000"
