@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: hetzner-objectstorage
+  namespace: gitea
+spec:
+  hosts:
+    - fsn1.your-objectstorage.com
+  ports:
+    - number: 443
+      name: https
+      protocol: HTTPS
+  location: MESH_EXTERNAL
+  resolution: DNS
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: smtp-resend
+  namespace: gitea
+spec:
+  hosts:
+    - smtp.resend.com
+  ports:
+    - number: 587
+      name: smtp
+      protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: DNS

@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  hosts:
+    - git.asnk.io
+  gateways:
+    - gitea-gateway
+
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: gitea.gitea.svc.cluster.local
+            port:
+              number: 3000
+
+  tcp:
+    - match:
+        - port: 2222
+      route:
+        - destination:
+            host: gitea.gitea.svc.cluster.local
+            port:
+              number: 2222

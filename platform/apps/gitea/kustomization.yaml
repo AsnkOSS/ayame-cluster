@@ -6,15 +6,20 @@ resources:
   - namespace.yaml
   - secrets.yaml
   - config.yaml
-  - gitea-pvc.yaml
-  - gitea-service.yaml
-  - gitea-deployment.yaml
-  - postgres-pvc.yaml
-  - postgres-service.yaml
-  - postgres-deployment.yaml
-  - redis-pvc.yaml
-  - redis-service.yaml
-  - redis-deployment.yaml
-  - meilisearch-pvc.yaml
-  - meilisearch-service.yaml
-  - meilisearch-deployment.yaml
+  - gitea/gitea-pvc.yaml
+  - gitea/gitea-service.yaml
+  - gitea/gitea-deployment.yaml
+  - postgres/postgres-pvc.yaml
+  - postgres/postgres-service.yaml
+  - postgres/postgres-deployment.yaml
+  - redis/redis-pvc.yaml
+  - redis/redis-service.yaml
+  - redis/redis-deployment.yaml
+  - meilisearch/meilisearch-pvc.yaml
+  - meilisearch/meilisearch-service.yaml
+  - meilisearch/meilisearch-deployment.yaml
+  - network/certificate.yaml
+  - network/destination-rule.yaml
+  - network/gateway.yaml
+  - network/service-entry.yaml
+  - network/virtual-service.yaml
