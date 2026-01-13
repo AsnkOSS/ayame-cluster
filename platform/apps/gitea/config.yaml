@@ -61,9 +61,11 @@ stringData:
     ENABLE_CAPTCHA                        = true
     REQUIRE_CAPTCHA_FOR_LOGIN             = true
     REQUIRE_EXTERNAL_REGISTRATION_CAPTCHA = true
-    CAPTCHA_TYPE                          = cfturnstile
+    CAPTCHA_TYPE                          = hcaptcha
     CF_TURNSTILE_SECRET                   = ${CF_TURNSTILE_SECRET}
     CF_TURNSTILE_SITEKEY                  = ${CF_TURNSTILE_SITEKEY}
+    HCAPTCHA_SECRET                       = ${HCAPTCHA_SECRET}
+    HCAPTCHA_SITEKEY                      = ${HCAPTCHA_SITEKEY}
     DEFAULT_KEEP_EMAIL_PRIVATE            = true
     DEFAULT_ALLOW_CREATE_ORGANIZATION     = false
     SHOW_REGISTRATION_BUTTON              = false
