@@ -81,6 +81,11 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: MINIO_SECRET_ACCESS_KEY
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-secrets
+                  key: MEILI_MASTER_KEY
           volumeMounts:
             - name: gitea-data
               mountPath: /data
