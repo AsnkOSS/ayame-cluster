@@ -31,11 +31,6 @@ spec:
               value: "production"
             - name: MEILI_NO_ANALYTICS
               value: "true"
-            - name: MEILI_MASTER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: gitea-secrets
-                  key: MEILI_MASTER_KEY
           volumeMounts:
             - name: meili-data
               mountPath: /meili_data
