@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: gitea-cnpg
 spec:
-  instances: 3
+  instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   storage:
     pvcTemplate:
@@ -14,3 +14,16 @@ spec:
           storage: 10Gi
       storageClassName: gitea-cnpg-data
       volumeMode: hcloud-volumes
+
+  bootstrap:
+    pg_basebackup:
+      source: source-db
+
+  externalClusters:
+    - name: source-db
+      connectionParameters:
+        host: gitea-postgres.gitea
+        user: gitea
+      password:
+        name: gitea-secrets
+        key: DATABASE_PASSWORD
