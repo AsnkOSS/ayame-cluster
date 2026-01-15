@@ -1,5 +1,8 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.34.2-standalone-strict/namespace.json
 apiVersion: v1
 kind: Namespace
 metadata:
+  labels:
+    app.kubernetes.io/name: cloudnative-pg
+    app.kubernetes.io/managed-by: kustomize
+    control-plane: controller-manager
   name: cnpg-system
