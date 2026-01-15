@@ -25,7 +25,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: gitea-postgres
+  name: gitea-cnpg-rw
   namespace: gitea
 spec:
   host: gitea-cnpg-rw.gitea.svc.cluster.local
