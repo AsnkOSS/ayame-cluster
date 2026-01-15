@@ -18,7 +18,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: atame-infra
+  name: ayame-infra
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -32,13 +32,13 @@ spec:
     metadata:
       name: "{{ .path.basename }}"
     spec:
-      project: mimosa-infra
+      project: ayame-infra
       source:
         repoURL: https://github.com/AsnkOSS/ayame-cluster.git
         targetRevision: main
         path: "{{ .path.path }}"
       destination:
-        name: "mimosa"
+        name: "ayame-cluster"
       syncPolicy:
         syncOptions:
           - CreateNamespace=true

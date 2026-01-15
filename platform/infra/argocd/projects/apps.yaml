@@ -38,7 +38,7 @@ spec:
         targetRevision: main
         path: "{{ .path.path }}"
       destination:
-        name: "mimosa"
+        name: "ayame-cluster"
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
