@@ -7,10 +7,4 @@ namespace: cnpg-system
 resources:
   - namespace.yaml
   - cnpg-1.28.0.yaml
-
-helmCharts:
-  - name: cnpg-plugin-wal-g
-    releaseName: cnpg-plugin-wal-g
-    namespace: cnpg-system
-    repo: oci://ghcr.io/wal-g
-    version: 0.2.2-helm-chart
+  - wal-g-plugin-0.2.2.yaml
