@@ -46,15 +46,6 @@ helmCharts:
     version: 1.28.2
     releaseName: istiod
     namespace: istio-system
-    valuesInline:
-      meshConfig:
-        defaultConfig:
-          proxyMetadata:
-            ISTIO_DUAL_STACK: "true"
-      pilot:
-        env:
-          ISTIO_DUAL_STACK: "true"
-        ipFamilyPolicy: RequireDualStack
 
   # cni
   - name: cni
@@ -69,9 +60,6 @@ helmCharts:
     version: 1.28.2
     releaseName: istio-ingressgateway
     namespace: istio-ingress
-    valuesInline:
-      service:
-        ipFamilyPolicy: RequireDualStack
 
   # Kiali operator
   - name: kiali-operator

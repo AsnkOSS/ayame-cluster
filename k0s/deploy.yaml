@@ -45,9 +45,7 @@ spec:
         network:
           clusterDomain: cluster.local
           dualStack:
-            enabled: true
-            IPv6podCIDR: fd00:10:244::/108
-            IPv6serviceCIDR: fd00:10:96::/108
+            enabled: false
           kubeProxy:
             iptables:
               minSyncPeriod: 0s
