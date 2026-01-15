@@ -25,10 +25,10 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: harbor-postgres
+  name: harbor-database
   namespace: harbor
 spec:
-  host: harbor-postgres.harbor.svc.cluster.local
+  host: harbor-database.harbor.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
