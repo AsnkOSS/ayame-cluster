@@ -121,12 +121,12 @@ stringData:
 
     [storage.hcloud]
     STORAGE_TYPE             = minio
-    MINIO_ENDPOINT           = fsn1.your-objectstorage.com
+    MINIO_ENDPOINT           = https://fsn1.your-objectstorage.com
     MINIO_ACCESS_KEY_ID      = ${MINIO_ACCESS_KEY_ID}
     MINIO_SECRET_ACCESS_KEY  = ${MINIO_SECRET_ACCESS_KEY}
     MINIO_BUCKET             = ayame-gitea
     MINIO_LOCATION           = eu-central
-    MINIO_USE_SSL            = false
+    MINIO_USE_SSL            = true
     MINIO_BUCKET_LOOKUP_TYPE = path
 
     [storage.repo-archive]
