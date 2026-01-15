@@ -27,6 +27,7 @@ resource "null_resource" "apply" {
     interpreter = ["/bin/bash", "-lc"]
     command     = <<-BASH
       set -euo pipefail
+      cd "${var.kubespray_dir}"
       uv run ansible-playbook -i "${var.inventory_path}" -b -v cluster.yml
     BASH
   }
