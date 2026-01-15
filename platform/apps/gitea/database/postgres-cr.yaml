@@ -25,6 +25,8 @@ spec:
       connectionParameters:
         host: gitea-postgres.gitea
         user: gitea
+        dbname: gitea
+        sslmode: disable
       password:
         name: gitea-secrets
         key: DATABASE_PASSWORD
