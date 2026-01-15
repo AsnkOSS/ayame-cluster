@@ -10,4 +10,4 @@ helmCharts:
     releaseName: cnpg-plugin-wal-g
     namespace: cnpg-system
     repo: oci://ghcr.io/wal-g
-    version: 0.2.1-helm-chart
+    version: 0.2.2-helm-chart
