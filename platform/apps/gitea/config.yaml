@@ -26,7 +26,7 @@ stringData:
 
     [database]
     DB_TYPE  = postgres
-    HOST     = gitea-postgres.gitea.svc:5432
+    HOST     = gitea-postgres.gitea.svc.cluster.local:5432
     NAME     = gitea
     USER     = gitea
     PASSWD   = ${DATABASE_PASSWORD}
@@ -34,11 +34,11 @@ stringData:
 
     [indexer]
     ISSUE_INDEXER_TYPE = meilisearch
-    ISSUE_INDEXER_CONN_STR = http://:${MEILI_MASTER_KEY}@gitea-meilisearch.gitea.svc:7700
+    ISSUE_INDEXER_CONN_STR = http://:${MEILI_MASTER_KEY}@gitea-meilisearch.gitea.svc.cluster.local:7700
 
     [queue]
     TYPE = redis
-    CONN_STR = redis://gitea-redis.gitea.svc:6379/0
+    CONN_STR = redis://gitea-redis.gitea.svc.cluster.local:6379/0
 
     [admin]
     DEFAULT_EMAIL_NOTIFICATIONS = enabled
@@ -85,11 +85,11 @@ stringData:
 
     [cache]
     ADAPTER = redis
-    HOST    = redis://gitea-redis.gitea.svc:6379/0
+    HOST    = redis://gitea-redis.gitea.svc.cluster.local:6379/1
 
     [session]
     PROVIDER        = redis
-    PROVIDER_CONFIG = redis://gitea-redis.gitea.svc.cluster.local:6379/1
+    PROVIDER_CONFIG = redis://gitea-redis.gitea.svc.cluster.local:6379/2
     COOKIE_SECURE   = true
 
     [picture]
