@@ -4,8 +4,6 @@ metadata:
   name: hetzner-objectstorage
   namespace: gitea
 spec:
-  exportTo:
-    - "*"
   hosts:
     - fsn1.your-objectstorage.com
   ports:
