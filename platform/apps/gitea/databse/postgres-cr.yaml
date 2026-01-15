@@ -2,6 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: gitea-cnpg
+  namespace: gitea
 spec:
   instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:14
