@@ -6,7 +6,7 @@ namespace: harbor
 
 resources:
   - namespace.yaml
-  - secrets.yaml
+  - sealed-secrets.yaml
   - network/certificate.yaml
   - network/gateway.yaml
   - network/virtual-service.yaml

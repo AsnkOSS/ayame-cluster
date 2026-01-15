@@ -48,11 +48,11 @@ spec:
               chown 1000:1000 /data/app.ini
               chmod 600 /data/app.ini
           env:
-            - name: DATABASE_PASSWORD
+            - name: GITEA_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: gitea-secrets
-                  key: DATABASE_PASSWORD
+                  key: GITEA_DATABASE_PASSWORD
             - name: GITEA_SECRET_KEY
               valueFrom:
                 secretKeyRef:

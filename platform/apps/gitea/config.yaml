@@ -29,7 +29,7 @@ stringData:
     HOST     = gitea-postgres.gitea:5432
     NAME     = gitea
     USER     = gitea
-    PASSWD   = ${DATABASE_PASSWORD}
+    PASSWD   = ${GITEA_DATABASE_PASSWORD}
     SSL_MODE = disable
 
     [indexer]

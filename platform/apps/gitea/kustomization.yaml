@@ -6,8 +6,8 @@ namespace: gitea
 
 resources:
   - namespace.yaml
-  - secrets.yaml
   - config.yaml
+  - sealed-secrets.yaml
   - gitea/gitea-pvc.yaml
   - gitea/gitea-service.yaml
   - gitea/gitea-stateful-set.yaml

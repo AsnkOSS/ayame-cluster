@@ -17,6 +17,10 @@ spec:
       volumeMode: Filesystem
 
   bootstrap:
+    initdb:
+      database: gitea
+      owner: gitea
+
     pg_basebackup:
       source: source-db
 
@@ -24,9 +28,9 @@ spec:
     - name: source-db
       connectionParameters:
         host: gitea-postgres.gitea
-        user: streaming_replica
+        user: postgres
         dbname: gitea
         sslmode: disable
       password:
-        name: source-db-replica-user
-        key: password
+        name: gitea-secrets
+        key: POSTGRES_PASSWORD

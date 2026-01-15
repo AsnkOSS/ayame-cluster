@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - hcloud-csi.yaml
-  - secret.yaml
+  - sealed-secrets.yaml
