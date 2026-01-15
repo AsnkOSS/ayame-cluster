@@ -6,6 +6,8 @@ metadata:
 spec:
   host: gitea.gitea.svc.cluster.local
   trafficPolicy:
+    tls:
+      mode: DISABLE
     connectionPool:
       tcp:
         maxConnections: 100

@@ -6,6 +6,8 @@ metadata:
 spec:
   host: harbor-nginx.harbor.svc.cluster.local
   trafficPolicy:
+    tls:
+      mode: DISABLE
     loadBalancer:
       simple: LEAST_REQUEST
     connectionPool:
