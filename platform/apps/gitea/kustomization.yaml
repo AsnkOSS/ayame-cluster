@@ -8,16 +8,16 @@ resources:
   - config.yaml
   - gitea/gitea-pvc.yaml
   - gitea/gitea-service.yaml
-  - gitea/gitea-deployment.yaml
+  - gitea/gitea-stateful-set.yaml
   - postgres/postgres-pvc.yaml
   - postgres/postgres-service.yaml
-  - postgres/postgres-deployment.yaml
+  - postgres/postgres-stateful-set.yaml
   - redis/redis-pvc.yaml
   - redis/redis-service.yaml
-  - redis/redis-deployment.yaml
+  - redis/redis-stateful-set.yaml
   - meilisearch/meilisearch-pvc.yaml
   - meilisearch/meilisearch-service.yaml
-  - meilisearch/meilisearch-deployment.yaml
+  - meilisearch/meilisearch-stateful-set.yaml
   - network/certificate.yaml
   - network/destination-rule.yaml
   - network/gateway.yaml
