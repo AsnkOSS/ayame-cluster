@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitea-redis-service
+  name: gitea-redis
   namespace: gitea
 spec:
   selector:

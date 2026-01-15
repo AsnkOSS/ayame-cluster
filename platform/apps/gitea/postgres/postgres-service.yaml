@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitea-postgres-service
+  name: gitea-postgres
   namespace: gitea
 spec:
   selector:
