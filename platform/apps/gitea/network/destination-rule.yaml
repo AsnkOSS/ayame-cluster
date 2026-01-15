@@ -8,3 +8,52 @@ spec:
   trafficPolicy:
     tls:
       mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: gitea-postgres
+  namespace: gitea
+spec:
+  host: gitea-postgres.gitea.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: gitea-redis
+  namespace: gitea
+spec:
+  host: gitea-redis.gitea.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: gitea-meilisearch
+  namespace: gitea
+spec:
+  host: gitea-meilisearch.gitea.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: hetzner-s3
+  namespace: harbor
+spec:
+  host: fsn1.your-objectstorage.com
+  trafficPolicy:
+    tls:
+      mode: SIMPLE
+      sni: fsn1.your-objectstorage.com
