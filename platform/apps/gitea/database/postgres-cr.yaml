@@ -17,10 +17,6 @@ spec:
       volumeMode: Filesystem
 
   bootstrap:
-    initdb:
-      database: gitea
-      owner: gitea
-
     pg_basebackup:
       source: source-db
 
