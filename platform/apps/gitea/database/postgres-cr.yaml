@@ -4,7 +4,7 @@ metadata:
   name: gitea-cnpg
   namespace: gitea
 spec:
-  instances: 1
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   storage:
     pvcTemplate:
@@ -16,16 +16,16 @@ spec:
       storageClassName: hcloud-volumes
       volumeMode: Filesystem
 
-  bootstrap:
-    pg_basebackup:
-      source: source-db
-
-  externalClusters:
-    - name: source-db
-      connectionParameters:
-        host: gitea-postgres.gitea
-        user: streaming_replica
-        sslmode: disable
-      password:
-        name: source-db-replica-user
-        key: password
+#   bootstrap:
+#     pg_basebackup:
+#       source: source-db
+#
+#   externalClusters:
+#     - name: source-db
+#       connectionParameters:
+#         host: gitea-postgres.gitea
+#         user: streaming_replica
+#         sslmode: disable
+#       password:
+#         name: source-db-replica-user
+#         key: password
