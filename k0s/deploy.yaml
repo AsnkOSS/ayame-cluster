@@ -59,7 +59,7 @@ spec:
             metricsBindAddress: 0.0.0.0:10249
             mode: iptables
           calico:
-            mode: bird
+            mode: ipip
           nodeLocalLoadBalancing:
             enabled: false
           provider: calico
