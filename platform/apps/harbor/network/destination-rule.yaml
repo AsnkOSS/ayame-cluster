@@ -1,6 +1,18 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
+  name: harbor-nginx
+  namespace: harbor
+spec:
+  host: harbor-nginx.harbor.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
   name: harbor-redis-plain
   namespace: harbor
 spec:
