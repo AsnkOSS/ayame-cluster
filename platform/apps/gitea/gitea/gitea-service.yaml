@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitea
+  name: gitea-service
   namespace: gitea
 spec:
   selector:
@@ -13,5 +13,4 @@ spec:
     - name: tcp-ssh
       port: 2222
       targetPort: 2222
-      nodePort: 30122
-  type: NodePort
+  type: ClusterIP

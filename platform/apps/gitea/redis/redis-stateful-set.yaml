@@ -1,12 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: gitea-redis
   namespace: gitea
 spec:
+  serviceName: gitea-redis-service
   replicas: 1
-  strategy:
-    type: Recreate
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
   selector:
     matchLabels:
       app: gitea-redis
@@ -15,6 +18,9 @@ spec:
       labels:
         app: gitea-redis
     spec:
+      securityContext:
+        fsGroup: 1000
+
       initContainers:
         - name: init-redis-dir
           image: alpine:3.19
@@ -28,9 +34,6 @@ spec:
           volumeMounts:
             - name: redisdata
               mountPath: /data
-
-      securityContext:
-        fsGroup: 1000
 
       containers:
         - name: redis
@@ -60,6 +63,7 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
+
       volumes:
         - name: redisdata
           persistentVolumeClaim:

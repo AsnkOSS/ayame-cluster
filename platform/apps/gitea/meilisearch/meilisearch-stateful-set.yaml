@@ -1,12 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: gitea-meilisearch
   namespace: gitea
 spec:
+  serviceName: gitea-meilisearch-service
   replicas: 1
-  strategy:
-    type: Recreate
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
   selector:
     matchLabels:
       app: gitea-meilisearch

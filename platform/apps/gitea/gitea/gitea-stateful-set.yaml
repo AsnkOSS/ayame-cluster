@@ -1,12 +1,15 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: gitea
   namespace: gitea
 spec:
+  serviceName: gitea-service
   replicas: 1
-  strategy:
-    type: Recreate
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
   selector:
     matchLabels:
       app: gitea
@@ -17,6 +20,7 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
+
       initContainers:
         - name: init-dirs
           image: alpine:3.23
@@ -32,6 +36,7 @@ spec:
             - name: appini
               mountPath: /in
               readOnly: true
+
         - name: render-appini
           image: alpine:3.23
           command: ["sh", "-c"]
@@ -99,6 +104,7 @@ spec:
             - name: appini
               mountPath: /in
               readOnly: true
+
       containers:
         - name: gitea
           image: docker.gitea.com/gitea:1.25.3-rootless
@@ -129,6 +135,7 @@ spec:
           volumeMounts:
             - name: gitea-data
               mountPath: /data
+
           readinessProbe:
             httpGet:
               path: /
@@ -141,6 +148,7 @@ spec:
               port: 3000
             initialDelaySeconds: 60
             periodSeconds: 10
+
       volumes:
         - name: gitea-data
           persistentVolumeClaim:
