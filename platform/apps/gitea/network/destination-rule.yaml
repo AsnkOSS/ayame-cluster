@@ -69,6 +69,6 @@ spec:
     tls:
       mode: SIMPLE
       sni: fsn1.your-objectstorage.com
-  connectionPool:
-    http:
-      h2UpgradePolicy: DO_NOT_UPGRADE
+    connectionPool:
+      http:
+        h2UpgradePolicy: DO_NOT_UPGRADE
