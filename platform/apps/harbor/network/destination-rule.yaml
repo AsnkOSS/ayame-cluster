@@ -55,5 +55,5 @@ spec:
   host: fsn1.your-objectstorage.com
   trafficPolicy:
     tls:
-      mode: SIMPLE
+      mode: DISABLE
       sni: fsn1.your-objectstorage.com

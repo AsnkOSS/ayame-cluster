@@ -126,7 +126,7 @@ stringData:
     MINIO_SECRET_ACCESS_KEY  = ${MINIO_SECRET_ACCESS_KEY}
     MINIO_BUCKET             = ayame-gitea
     MINIO_LOCATION           = eu-central
-    MINIO_USE_SSL            = true
+    MINIO_USE_SSL            = false
     MINIO_BUCKET_LOOKUP_TYPE = path
 
     [storage.repo-archive]
