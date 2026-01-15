@@ -25,6 +25,18 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
+  name: harbor-redis-plain
+  namespace: harbor
+spec:
+  host: harbor-postgres.harbor.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
   name: hetzner-s3
   namespace: harbor
 spec:
