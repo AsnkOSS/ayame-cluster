@@ -7,7 +7,6 @@ namespace: cnpg-system
 resources:
   - namespace.yaml
   - cnpg-1.28.0.yaml
-  - wal-g-plugin-0.2.2.yaml
 
 helmCharts:
   - name: cnpg-plugin-wal-g
