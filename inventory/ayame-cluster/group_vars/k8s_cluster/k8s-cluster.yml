@@ -1,0 +1,68 @@
+---
+kube_config_dir: /etc/kubernetes
+kube_script_dir: "{{ bin_dir }}/kubernetes-scripts"
+kube_manifest_dir: "{{ kube_config_dir }}/manifests"
+kube_cert_dir: "{{ kube_config_dir }}/ssl"
+kube_token_dir: "{{ kube_config_dir }}/tokens"
+
+local_release_dir: "/tmp/releases"
+retry_stagger: 5
+
+kube_owner: kube
+kube_cert_group: kube-cert
+kube_log_level: 2
+
+credentials_dir: "{{ inventory_dir }}/credentials"
+
+kube_api_anonymous_auth: false
+remove_anonymous_access: true
+
+kube_network_plugin: cilium
+
+kube_service_addresses: 10.233.0.0/18
+kube_pods_subnet: 10.233.64.0/18
+kube_network_node_prefix: 24
+
+kube_apiserver_ip: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(1) | ansible.utils.ipaddr('address') }}"
+kube_apiserver_port: 6443
+
+kube_proxy_enabled: false
+kube_proxy_strict_arp: false
+
+kube_proxy_nodeport_addresses: >-
+  {%- if kube_proxy_nodeport_addresses_cidr is defined -%}
+  [{{ kube_proxy_nodeport_addresses_cidr }}]
+  {%- else -%}
+  []
+  {%- endif -%}
+
+cluster_name: cluster.local
+dns_domain: "{{ cluster_name }}"
+ndots: 2
+dns_mode: coredns
+enable_coredns_k8s_external: false
+
+resolvconf_mode: host_resolvconf
+deploy_netchecker: false
+
+skydns_server: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(3) | ansible.utils.ipaddr('address') }}"
+skydns_server_secondary: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(4) | ansible.utils.ipaddr('address') }}"
+
+container_manager: containerd
+kata_containers_enabled: false
+
+kubeadm_certificate_key: "{{ lookup('password', credentials_dir + '/kubeadm_certificate_key.creds length=64 chars=hexdigits') | lower }}"
+
+k8s_image_pull_policy: IfNotPresent
+
+kubernetes_audit: false
+kube_encrypt_secret_data: false
+
+default_kubelet_config_dir: "{{ kube_config_dir }}/dynamic_kubelet_dir"
+
+auto_renew_certificates: false
+
+kubeadm_patches_dir: "{{ kube_config_dir }}/patches"
+kubeadm_patches: []
+
+event_ttl_duration: "1h0m0s"

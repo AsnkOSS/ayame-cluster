@@ -1,0 +1,36 @@
+---
+bin_dir: /usr/local/bin
+
+loadbalancer_apiserver:
+  address: 10.0.0.3
+  port: 6443
+
+loadbalancer_apiserver_localhost: true
+loadbalancer_apiserver_type: nginx
+
+loadbalancer_apiserver_port: 6443
+loadbalancer_apiserver_healthcheck_port: 8081
+
+no_proxy_exclude_workers: false
+
+cert_management: script
+ignore_assert_errors: false
+
+download_container: true
+deploy_container_engine: true
+
+ping_access_ip: true
+
+ntp_enabled: false
+ntp_manage_config: false
+ntp_servers:
+  - "0.pool.ntp.org iburst"
+  - "1.pool.ntp.org iburst"
+  - "2.pool.ntp.org iburst"
+  - "3.pool.ntp.org iburst"
+
+kube_webhook_token_auth: false
+kube_webhook_token_auth_url_skip_tls_verify: false
+
+unsafe_show_logs: false
+allow_unsupported_distribution_setup: false

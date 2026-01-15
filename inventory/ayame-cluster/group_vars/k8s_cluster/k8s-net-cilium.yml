@@ -1,0 +1,40 @@
+---
+cilium_enable_ipv4: true
+cilium_enable_ipv6: false
+
+cilium_kube_proxy_replacement: strict
+cilium_tunnel_mode: vxlan
+cilium_l2announcements: false
+
+cilium_memory_limit: 500M
+cilium_cpu_limit: 500m
+cilium_memory_requests: 64M
+cilium_cpu_requests: 100m
+
+cilium_agent_health_port: "9879"
+
+cilium_enable_prometheus: true
+cilium_monitor_aggregation: medium
+
+cilium_enable_hubble: true
+cilium_enable_hubble_ui: "{{ cilium_enable_hubble }}"
+cilium_hubble_install: true
+cilium_hubble_tls_generate: true
+
+cilium_identity_allocation_mode: crd
+cilium_ipam_mode: kubernetes
+
+cilium_operator_replicas: 3
+
+cilium_cluster_name: ayame-cluster
+
+cilium_cni_exclusive: true
+
+cilium_enable_bpf_masquerade: true
+
+cilium_ip_masq_agent_enable: false
+cilium_enable_portmap: false
+cilium_enable_host_firewall: false
+cilium_policy_audit_mode: false
+
+cilium_deploy_additionally: false
