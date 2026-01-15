@@ -49,7 +49,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: harbor-hetzner-s3
+  name: hetzner-objectstorage
   namespace: harbor
 spec:
   host: fsn1.your-objectstorage.com

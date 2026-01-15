@@ -8,8 +8,8 @@ spec:
     - fsn1.your-objectstorage.com
   ports:
     - number: 443
-      name: https
-      protocol: HTTPS
+      name: tls
+      protocol: TLS
   location: MESH_EXTERNAL
   resolution: DNS
 
