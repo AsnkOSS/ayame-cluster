@@ -24,9 +24,9 @@ spec:
     - name: source-db
       connectionParameters:
         host: gitea-postgres.gitea
-        user: gitea
+        user: streaming_replica
         dbname: gitea
         sslmode: disable
       password:
-        name: gitea-secrets
-        key: DATABASE_PASSWORD
+        name: source-db-replica-user
+        key: password
