@@ -13,4 +13,5 @@ spec:
     - name: tcp-ssh
       port: 2222
       targetPort: 2222
-  type: ClusterIP
+      nodePort: 30122
+  type: NodePort
