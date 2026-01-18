@@ -38,3 +38,6 @@ secrets/
 
 # venv
 .venv
+
+# cluster inventory
+inventory.ini

@@ -16,25 +16,36 @@ terraform {
   }
 }
 
-// hetzner
-terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "~> 1.45"
-    }
-  }
-}
-
 variable "hcloud_token" {
   type      = string
   sensitive = true
 }
 
-provider "hcloud" {
-  token = var.hcloud_token
-}
+module "kubernetes" {
+  source  = "hcloud-k8s/kubernetes/hcloud"
+  version = "3.20.1"
 
-module "hetzner" {
-  source = "./terraform"
+  cluster_name = "ayame"
+  hcloud_token = var.hcloud_token
+
+  cluster_kubeconfig_path  = "./secrets/kubeconfig"
+  cluster_talosconfig_path = "./secrets/talosconfig"
+
+  cilium_gateway_api_enabled  = true
+  cilium_hubble_enabled       = true
+  cilium_hubble_relay_enabled = true
+  cilium_hubble_ui_enabled    = true
+
+  firewall_use_current_ipv4 = true
+  firewall_use_current_ipv6 = false
+
+  kube_api_load_balancer_enabled = true
+  kube_api_hostname              = "ayame.cluster.sne.moe"
+
+  control_plane_nodepools = [
+    { name = "control", type = "cx43", location = "fsn1", count = 3 }
+  ]
+  worker_nodepools = [
+    { name = "worker", type = "cx53", location = "fsn1", count = 5 }
+  ]
 }

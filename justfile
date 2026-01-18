@@ -1,13 +1,19 @@
-venv_home_dir := join(justfile_directory(), ".venv")
-export UV_PROJECT_ENVIRONMENT := venv_home_dir
+root_directory := justfile_directory()
 
-uv-venv:
-    uv venv
+tf-init:
+    op run -- terraform init
 
-uv-install:
-    uv pip install -r kubespray/requirements.txt
-    uv pip freeze > uv.lock
-    uv pip sync uv.lock
+tf-plan:
+    op run -- terraform plan
 
-uv-sync:
-    uv pip sync uv.lock
+tf-apply:
+    op run -- terraform apply
+
+tf-destroy:
+    op run -- terraform destroy
+
+kk-create:
+    {{ root_directory }}/kubekey/kk create cluster -i {{ root_directory }}/kubekey/inventory.yaml -c {{ root_directory }}/kubekey/config.yaml --with-kubernetes v1.34.3
+
+kk-add:
+    {{ root_directory }}/kubekey/kk add nodes -i {{ root_directory }}/kubekey/inventory.yaml -c {{ root_directory }}/kubekey/config.yaml
