@@ -40,7 +40,7 @@ module "kubernetes" {
   firewall_use_current_ipv6 = false
 
   kube_api_load_balancer_enabled = true
-  kube_api_hostname              = "ayame.cluster.sne.moe"
+  kube_api_hostname              = "ayame.cluster.asnk.io"
 
   control_plane_nodepools = [
     { name = "control", type = "cx43", location = "fsn1", count = 3 }
