@@ -11,6 +11,6 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - ayame-master-1
-                      - ayame-master-2
-                      - ayame-master-3
+                      - ayame-control-1
+                      - ayame-control-2
+                      - ayame-control-3
