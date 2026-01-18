@@ -35,9 +35,3 @@ terraform.rc
 
 # secrets
 secrets/
-
-# venv
-.venv
-
-# cluster inventory
-inventory.ini
