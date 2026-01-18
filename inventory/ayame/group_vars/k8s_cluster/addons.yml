@@ -5,7 +5,7 @@ helm_enabled: true
 
 registry_enabled: false
 
-metrics_server_enabled: false
+metrics_server_enabled: true
 
 local_path_provisioner_enabled: false
 
@@ -16,19 +16,14 @@ csi_snapshot_controller_enabled: false
 gateway_api_enabled: true
 
 ingress_nginx_enabled: false
-ingress_publish_status_address: ""
 
 ingress_alb_enabled: false
 
-cert_manager_enabled: true
-cert_manager_namespace: "cert-manager"
+cert_manager_enabled: false
 
 metallb_enabled: false
-metallb_speaker_enabled: "{{ metallb_enabled }}"
-metallb_namespace: "metallb-system"
 
-argocd_enabled: true
-argocd_namespace: argocd
+argocd_enabled: false
 
 kube_vip_enabled: false
 

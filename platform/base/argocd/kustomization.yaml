@@ -21,3 +21,5 @@ patches:
     target:
       kind: ConfigMap
       name: argocd-cm
+
+  - path: master-node-patch.yaml

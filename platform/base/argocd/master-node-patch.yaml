@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - ayame-master-1
+                      - ayame-master-2
+                      - ayame-master-3

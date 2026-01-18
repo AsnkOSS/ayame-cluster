@@ -36,5 +36,5 @@ provider "hcloud" {
 }
 
 module "hetzner" {
-  source = "./terraform/hetzner"
+  source = "./terraform"
 }

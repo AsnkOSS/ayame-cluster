@@ -1,6 +1,6 @@
 variable "cluster_name" {
   type    = string
-  default = "ayame-cluster"
+  default = "ayame"
 }
 
 variable "location" {
@@ -26,6 +26,11 @@ variable "subnet_ip_range" {
 variable "ssh_public_key_path" {
   type    = string
   default = "./secrets/ayame-cluster.pub"
+}
+
+variable "ssh_private_key_path" {
+  type    = string
+  default = "./secrets/ayame-cluster.key"
 }
 
 variable "server_image" {
@@ -67,4 +72,9 @@ variable "lb_internal_private_ip" {
 variable "lb_external_private_ip" {
   type    = string
   default = "10.0.0.3"
+}
+
+variable "ansible_user" {
+  type    = string
+  default = "root"
 }

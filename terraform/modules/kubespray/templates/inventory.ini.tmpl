@@ -1,0 +1,38 @@
+[all]
+%{ for node in control_planes ~}
+${node.name}:
+  ansible_host = ${node.public_ip}
+  ip = ${node.private_ip}
+  role = master
+  etcd_member_name = ${node.etcd_member_name}
+%{ endfor ~}
+%{ for node in workers ~}
+${node.name}:
+  ansible_host = ${node.public_ip}
+  ip = ${node.private_ip}
+  role = node
+%{ endfor ~}
+
+[kube_control_plane]
+%{ for node in control_planes ~}
+${node.name}:
+%{ endfor ~}
+
+[etcd]
+%{ for node in control_planes ~}
+${node.name}:
+%{ endfor ~}
+
+[kube_node]
+%{ for node in workers ~}
+${node.name}:
+%{ endfor ~}
+
+[k8s_cluster:children]
+kube_control_plane
+kube_node
+
+[vars]
+ansible_user = ${ansible_user}
+ansible_ssh_privte_key_path = ${ssh_private_key_path}
+ansible_ssh_common_args = "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"

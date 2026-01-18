@@ -163,3 +163,13 @@ module "firewall" {
     }
   ]
 }
+
+module "kubespray" {
+  source               = "./modules/kubespray"
+  cluster_name         = var.cluster_name
+  servers              = var.servers
+  ansible_user         = var.ansible_user
+  ssh_private_key_path = var.ssh_private_key_path
+  server_ipv4          = module.servers.server_ipv4
+  server_ipv6          = module.servers.server_ipv6
+}
