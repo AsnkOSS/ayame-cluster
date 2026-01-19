@@ -4,6 +4,3 @@ kind: Kustomization
 
 resources:
   - cert-manager-1.19.2.yaml
-
-patches:
-  - patch: master-node-patch.yaml
