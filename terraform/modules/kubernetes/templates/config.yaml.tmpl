@@ -1,0 +1,94 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: ${cluster_name}
+spec:
+  hosts:
+%{ for name, ip in servers ~}
+    - ssh:
+        address: ${ip}
+        user: root
+        port: 22
+        keyPath: ${ssh_key_path}
+      role: ${strcontains(name, "control") ? "controller" : "worker"}
+%{ endfor ~}
+  options:
+    wait:
+      enabled: true
+    drain:
+      enabled: true
+      force: true
+      ignoreDaemonSets: true
+
+---
+apiVersion: k0s.k0sproject.io/v1beta1
+kind: ClusterConfig
+metadata:
+  name: k0s
+spec:
+  api:
+    externalAddress: ${lb_internal_private_ip}
+    k0sApiPort: 9443
+    port: 6443
+    sans:
+      - ${lb_internal_private_ip}
+      - ${lb_internal_public_ip}
+      - ${lb_external_private_ip}
+      - ${lb_external_public_ip}
+%{ for ip in controller_ips ~}
+      - ${ip}
+%{ endfor ~}
+  extensions:
+    helm:
+      concurrencyLevel: 5
+      repositories:
+        - name: cilium
+          url: https://helm.cilium.io/
+      charts:
+        - name: cilium
+          chartname: cilium/cilium
+          version: "1.16.1"
+          namespace: kube-system
+          values: |
+            kubeProxyReplacement: "true"
+            k8sServiceHost: "${lb_internal_private_ip}"
+            k8sServicePort: "6443"
+            tunnelProtocol: ""
+            routingMode: "native"
+            autoDirectNodeRoutes: true
+            ipv4NativeRoutingCIDR: "10.244.0.0/16"
+            ipam:
+              mode: "kubernetes"
+            bpf:
+              masquerade: true
+              tproxy: true
+            hubble:
+              enabled: true
+              relay:
+                enabled: true
+              ui:
+                enabled: true
+            operator:
+              replicas: 3
+  konnectivity:
+    adminPort: 8133
+    agentPort: 8132
+  network:
+    clusterDomain: cluster.local
+    dualStack:
+      enabled: false
+    kubeProxy:
+      disabled: true
+    kuberouter:
+      enabled: false
+    podCIDR: 10.244.0.0/16
+    serviceCIDR: 10.96.0.0/12
+    provider: custom
+  storage:
+    type: etcd
+    etcd:
+      ca:
+        expiresAfter: 87600h
+        certificatesExpireAfter: 8760h
+  telemetry:
+    enabled: true

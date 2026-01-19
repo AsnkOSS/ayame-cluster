@@ -1,0 +1,27 @@
+variable "cluster_name" {
+  type = string
+}
+
+variable "location" {
+  type = string
+}
+
+variable "image" {
+  type = string
+}
+
+variable "ssh_key_id" {
+  type = string
+}
+
+variable "subnet_id" {
+  type = string
+}
+
+variable "servers" {
+  type = map(object({
+    role        = string
+    private_ip  = string
+    server_type = string
+  }))
+}

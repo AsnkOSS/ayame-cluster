@@ -11,9 +11,7 @@
     terraform
     argocd
     istioctl
-    talosctl
-    hcloud
-    packer
+    k0sctl
     uv
     just
   ];
