@@ -13,7 +13,7 @@
 - ayame-cluster.key
 - kubeconfig
 
-## deployment
+## Deployment
 
 - requires nix direnv devenv in environment
 - setup devenv envs, using 1password to store secrets
