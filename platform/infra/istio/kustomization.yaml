@@ -17,7 +17,6 @@ patches:
   - path: patches/istio-ingressgateway.yaml
   - path: patches/istio-ingressgateway-env.yaml
   - path: patches/prometheus-config-map.yaml
-  - path: patches/ztunnel.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
