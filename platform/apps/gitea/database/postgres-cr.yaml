@@ -4,7 +4,7 @@ metadata:
   name: gitea-cnpg
   namespace: gitea
 spec:
-  instances: 3
+  instances: 1
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   storage:
     pvcTemplate:
