@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   name: gitea
   labels:
-    istio-injection: enabled
+    istio.io/dataplane-mode: ambient
