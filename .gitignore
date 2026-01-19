@@ -37,4 +37,4 @@ terraform.rc
 secrets/
 
 # k0s config
-kubernetes/deploy.yaml
+deploy.yaml
