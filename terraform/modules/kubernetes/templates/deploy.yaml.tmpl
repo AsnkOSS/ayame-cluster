@@ -46,7 +46,6 @@ spec:
         - name: cilium
           chartname: cilium/cilium
           version: "1.16.1"
-          namespace: kube-system
           values: |
             kubeProxyReplacement: true
             k8sServiceHost: "${lb_internal_private_ip}"
