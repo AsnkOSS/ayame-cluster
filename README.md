@@ -29,7 +29,7 @@ just tf-apply
 just deploy
 ```
 
-- get **kubeconfig** from secrets/kubeconfig
+- get **kubeconfig** using command `just kubeconfig` kubeconfig will be stored in secrets
 - only for destroying cluster, remember to lock volumes
 
 ```bash

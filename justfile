@@ -17,3 +17,6 @@ tf-destroy:
 
 deploy:
     k0sctl apply -c {{ root_directory }}/deploy.yaml
+
+kubeconfig:
+    k0sctl kubeconfig --config k0sctl.yaml > secrets/kubeconfig
