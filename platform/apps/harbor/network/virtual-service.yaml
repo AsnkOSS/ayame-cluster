@@ -15,7 +15,7 @@ spec:
           port: 80
       route:
         - destination:
-            host: harbor.harbor.svc.cluster.local
+            host: harbor-nginx.harbor.svc.cluster.local
             port:
               number: 80
 
@@ -29,6 +29,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: harbor.harbor.svc.cluster.local
+            host: harbor-nginx.harbor.svc.cluster.local
             port:
               number: 80
