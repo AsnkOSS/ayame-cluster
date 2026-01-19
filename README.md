@@ -30,11 +30,10 @@
 just tf-init
 just tf-plan
 just tf-apply
-just kk-create
+just deploy
 ```
 
 - get **kubeconfig** from secrets/kubeconfig
-- get **talosconfig** from secrets/talosconfig
 
 - only for destroying cluster, remember to lock volumes
 
@@ -53,7 +52,3 @@ kubectl apply -k platform/base
 - wait for argocd to run then change the cluster name to your custom name in web
 - wait for argocd to detect and start or run your apps/infras
 - every apps/infras will using git to sync, press sync and refresh in argo web
-
-## issues
-
-- when using `just cluster-apply` may bring up your ssh agent
