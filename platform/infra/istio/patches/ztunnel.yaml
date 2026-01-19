@@ -11,5 +11,6 @@ spec:
             - name: ZTUNNEL_CPU_LIMIT
               valueFrom:
                 resourceFieldRef:
+                  divisor: "0"
                   resource: limits.cpu
           name: istio-proxy
