@@ -11,9 +11,6 @@ resources:
   - gitea/gitea-pvc.yaml
   - gitea/gitea-service.yaml
   - gitea/gitea-stateful-set.yaml
-  - postgres/postgres-pvc.yaml
-  - postgres/postgres-service.yaml
-  - postgres/postgres-stateful-set.yaml
   - database/postgres-cr.yaml
   - redis/redis-pvc.yaml
   - redis/redis-service.yaml
