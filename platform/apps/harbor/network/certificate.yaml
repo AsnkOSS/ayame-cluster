@@ -9,4 +9,4 @@ spec:
     kind: ClusterIssuer
     name: letsencrypt
   dnsNames:
-    - harbor.ayame.asnk.io
+    - registry.asnk.io

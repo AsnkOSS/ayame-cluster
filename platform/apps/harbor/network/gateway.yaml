@@ -12,7 +12,7 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - harbor.ayame.asnk.io
+        - registry.asnk.io
 
     - port:
         number: 443
@@ -22,4 +22,4 @@ spec:
         mode: SIMPLE
         credentialName: harbor-tls
       hosts:
-        - harbor.ayame.asnk.io
+        - registry.asnk.io
