@@ -11,7 +11,7 @@ spec:
       name: letsencrypt-account-key
     solvers:
       - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare-api-token
-            key: token
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: token
