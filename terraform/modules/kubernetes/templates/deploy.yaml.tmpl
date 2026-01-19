@@ -4,13 +4,14 @@ metadata:
   name: ${cluster_name}
 spec:
   hosts:
-%{ for name, ip in servers ~}
+%{ for name, host in servers ~}
     - ssh:
-        address: ${ip}
+        address: ${host.public_ip}
         user: root
         port: 22
         keyPath: ${ssh_key_path}
-      role: ${strcontains(name, "control") ? "controller" : "worker"}
+      privateAddress: ${host.private_ip}
+      role: ${host.role == "control" ? "controller" : "worker"}
 %{ endfor ~}
   options:
     wait:
@@ -35,9 +36,6 @@ spec:
       - ${lb_internal_public_ip}
       - ${lb_external_private_ip}
       - ${lb_external_public_ip}
-%{ for ip in controller_ips ~}
-      - ${ip}
-%{ endfor ~}
   extensions:
     helm:
       concurrencyLevel: 5

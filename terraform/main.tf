@@ -197,13 +197,16 @@ module "firewall" {
 }
 
 module "kubernetes" {
-  source            = "./modules/kubernetes"
-  cluster_name      = var.cluster_name
-  ssh_key_path      = var.ssh_private_key_path
-  server_public_ips = module.servers.server_ipv4
-  controller_private_ips = [
-    for k, v in var.servers : v.private_ip if v.role == "control"
-  ]
+  source       = "./modules/kubernetes"
+  cluster_name = var.cluster_name
+  ssh_key_path = var.ssh_private_key_path
+  servers = {
+    for name, config in var.servers : name => {
+      public_ip  = module.servers.server_ipv4[name]
+      private_ip = config.private_ip
+      role       = config.role
+    }
+  }
   lb_external_private_ip = var.lb_external_private_ip
   lb_external_public_ip  = module.external-loadbalancer.ipv4
   lb_internal_private_ip = var.lb_internal_private_ip

@@ -6,14 +6,6 @@ variable "ssh_key_path" {
   type = string
 }
 
-variable "server_public_ips" {
-  type = map(string)
-}
-
-variable "controller_private_ips" {
-  type = list(string)
-}
-
 variable "lb_internal_private_ip" {
   type = string
 }
@@ -28,4 +20,12 @@ variable "lb_external_private_ip" {
 
 variable "lb_external_public_ip" {
   type = string
+}
+
+variable "servers" {
+  type = map(object({
+    role       = string
+    private_ip = string
+    public_ip  = string
+  }))
 }
