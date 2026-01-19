@@ -53,6 +53,7 @@ variable "servers" {
     "worker-2"  = { role = "worker", private_ip = "10.0.0.22", server_type = "cx53" }
     "worker-3"  = { role = "worker", private_ip = "10.0.0.23", server_type = "cx53" }
     "worker-4"  = { role = "worker", private_ip = "10.0.0.24", server_type = "cx53" }
+    "worker-5"  = { role = "worker", private_ip = "10.0.0.25", server_type = "cx53" }
   }
 }
 
