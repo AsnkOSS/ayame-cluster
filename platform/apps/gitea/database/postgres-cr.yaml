@@ -15,17 +15,3 @@ spec:
           storage: 10Gi
       storageClassName: hcloud-volumes
       volumeMode: Filesystem
-
-#   bootstrap:
-#     pg_basebackup:
-#       source: source-db
-#
-#   externalClusters:
-#     - name: source-db
-#       connectionParameters:
-#         host: gitea-postgres.gitea
-#         user: streaming_replica
-#         sslmode: disable
-#       password:
-#         name: source-db-replica-user
-#         key: password
