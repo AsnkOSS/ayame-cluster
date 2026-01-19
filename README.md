@@ -34,7 +34,6 @@ just deploy
 ```
 
 - get **kubeconfig** from secrets/kubeconfig
-
 - only for destroying cluster, remember to lock volumes
 
 ```bash
