@@ -30,7 +30,7 @@ stringData:
     NAME     = app
     USER     = app
     PASSWD   = ${GITEA_DATABASE_PASSWORD}
-    SSL_MODE = enable
+    SSL_MODE = require
 
     [indexer]
     ISSUE_INDEXER_TYPE = meilisearch
