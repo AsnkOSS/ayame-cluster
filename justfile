@@ -16,4 +16,4 @@ tf-destroy:
     op run -- terraform destroy
 
 deploy:
-    k0sctl apply -c {{ root_directory }}/kubernetes/deploy.yaml
+    k0sctl apply -c {{ root_directory }}/deploy.yaml
