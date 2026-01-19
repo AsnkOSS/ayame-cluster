@@ -8,9 +8,8 @@ spec:
   template:
     spec:
       containers:
-        - args:
-            - proxy
-            - ztunnel
+        - name: ztunnel
+
           env:
             - name: ISTIO_META_ENABLE_HBONE
               value: "true"
