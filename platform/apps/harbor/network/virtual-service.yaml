@@ -7,18 +7,8 @@ spec:
   hosts:
     - registry.asnk.io
   gateways:
-    - istio-ingress/harbor-gateway
+    - harbor-gateway
   http:
-    - match:
-        - uri:
-            prefix: /.well-known/acme-challenge/
-          port: 80
-      route:
-        - destination:
-            host: harbor.harbor.svc.cluster.local
-            port:
-              number: 80
-
     - match:
         - port: 80
       redirect:
