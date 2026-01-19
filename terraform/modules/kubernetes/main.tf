@@ -18,5 +18,5 @@ resource "local_file" "k0sctl_config" {
     lb_external_private_ip = var.lb_external_private_ip
     lb_external_public_ip  = var.lb_external_public_ip
   })
-  filename = "${path.cwd}/kubernetes/deploy.yaml"
+  filename = "${path.cwd}/deploy.yaml"
 }
