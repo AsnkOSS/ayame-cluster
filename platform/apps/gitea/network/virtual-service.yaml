@@ -16,7 +16,7 @@ spec:
             prefix: /.well-known/acme-challenge/
       route:
         - destination:
-            host: gitea.gitea.svc.cluster.local
+            host: gitea.gitea
             port:
               number: 3000
 
@@ -33,6 +33,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: gitea.gitea.svc.cluster.local
+            host: gitea.gitea
             port:
               number: 3000
