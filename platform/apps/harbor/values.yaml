@@ -10,7 +10,7 @@ expose:
     annotations: {}
     labels: {}
 
-externalURL: https://harbor.ayame.asnk.io
+externalURL: https://registry.asnk.io
 
 portal:
   replicas: 1
