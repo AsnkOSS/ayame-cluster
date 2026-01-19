@@ -4,7 +4,7 @@ metadata:
   name: gitea
   namespace: gitea
 spec:
-  host: gitea.gitea
+  host: gitea.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -16,7 +16,7 @@ metadata:
   name: gitea-cnpg-rw
   namespace: gitea
 spec:
-  host: gitea-cnpg-rw.gitea
+  host: gitea-cnpg-rw.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -28,7 +28,7 @@ metadata:
   name: gitea-redis
   namespace: gitea
 spec:
-  host: gitea-redis.gitea
+  host: gitea-redis.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -40,7 +40,7 @@ metadata:
   name: gitea-meilisearch
   namespace: gitea
 spec:
-  host: gitea-meilisearch.gitea
+  host: gitea-meilisearch.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
