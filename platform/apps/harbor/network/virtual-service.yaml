@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: harbor
-  namespace: istio-ingress
+  namespace: harbor
 spec:
   hosts:
     - registry.asnk.io
@@ -15,7 +15,7 @@ spec:
           port: 80
       route:
         - destination:
-            host: harbor-nginx.harbor.svc.cluster.local
+            host: harbor.harbor.svc.cluster.local
             port:
               number: 80
 
@@ -29,6 +29,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: harbor-nginx.harbor.svc.cluster.local
+            host: harbor.harbor.svc.cluster.local
             port:
               number: 80
