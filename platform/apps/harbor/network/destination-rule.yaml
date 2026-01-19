@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: harbor-nginx
+  name: harbor
   namespace: harbor
 spec:
-  host: harbor-nginx.harbor.svc.cluster.local
+  host: harbor.harbor.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -13,10 +13,10 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: harbor-redis
+  name: harbor-core
   namespace: harbor
 spec:
-  host: harbor-redis.harbor.svc.cluster.local
+  host: harbor-core.harbor.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -29,6 +29,42 @@ metadata:
   namespace: harbor
 spec:
   host: harbor-database.harbor.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: harbor-jobservice
+  namespace: harbor
+spec:
+  host: harbor-jobservice.harbor.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: harbor-portal
+  namespace: harbor
+spec:
+  host: harbor-portal.harbor.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: harbor-registry
+  namespace: harbor
+spec:
+  host: harbor-registry.harbor.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
