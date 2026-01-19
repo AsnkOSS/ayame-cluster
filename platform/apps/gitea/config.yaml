@@ -26,9 +26,9 @@ stringData:
 
     [database]
     DB_TYPE  = postgres
-    HOST     = gitea-cnpg-rw.gitea:5432
-    NAME     = app
-    USER     = app
+    HOST     = gitea-postgres.gitea:5432
+    NAME     = gitea
+    USER     = gitea
     PASSWD   = ${GITEA_DATABASE_PASSWORD}
     SSL_MODE = require
 
