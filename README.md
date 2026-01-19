@@ -13,10 +13,6 @@
 - ayame-cluster.key
 - kubeconfig
 
-## inventory
-
-- inventory.ini
-
 ## deployment
 
 - requires nix direnv devenv in environment
