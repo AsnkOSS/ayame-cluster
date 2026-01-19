@@ -13,10 +13,10 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: gitea-cnpg-rw
+  name: gitea-postgres
   namespace: gitea
 spec:
-  host: gitea-cnpg-rw.gitea.svc.cluster.local
+  host: gitea-postgres.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
