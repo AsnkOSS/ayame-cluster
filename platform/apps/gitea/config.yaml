@@ -121,7 +121,7 @@ stringData:
 
     [storage.hcloud]
     STORAGE_TYPE             = minio
-    MINIO_ENDPOINT           = fsn1.your-objectstorage.com
+    MINIO_ENDPOINT           = fsn1.your-objectstorage.com:443
     MINIO_ACCESS_KEY_ID      = ${MINIO_ACCESS_KEY_ID}
     MINIO_SECRET_ACCESS_KEY  = ${MINIO_SECRET_ACCESS_KEY}
     MINIO_BUCKET             = ayame-gitea
