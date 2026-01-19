@@ -27,10 +27,10 @@ stringData:
     [database]
     DB_TYPE  = postgres
     HOST     = gitea-cnpg-rw.gitea:5432
-    NAME     = gitea
-    USER     = gitea
+    NAME     = app
+    USER     = app
     PASSWD   = ${GITEA_DATABASE_PASSWORD}
-    SSL_MODE = disable
+    SSL_MODE = enable
 
     [indexer]
     ISSUE_INDEXER_TYPE = meilisearch
