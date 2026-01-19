@@ -5,7 +5,7 @@ metadata:
   namespace: istio-ingress
 spec:
   hosts:
-    - harbor.ayame.asnk.io
+    - registry.asnk.io
   gateways:
     - istio-ingress/harbor-gateway
   http:
