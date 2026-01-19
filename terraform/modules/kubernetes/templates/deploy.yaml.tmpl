@@ -50,13 +50,16 @@ spec:
           version: "1.16.1"
           namespace: kube-system
           values: |
-            kubeProxyReplacement: "true"
+            kubeProxyReplacement: true
             k8sServiceHost: "${lb_internal_private_ip}"
             k8sServicePort: "6443"
-            tunnelProtocol: ""
-            routingMode: "native"
-            autoDirectNodeRoutes: true
-            ipv4NativeRoutingCIDR: "10.244.0.0/16"
+            routingMode: "tunnel"
+            tunnelProtocol: "vxlan"
+            autoDirectNodeRoutes: false
+            cni:
+              exclusive: false
+            socketLB:
+              hostNamespaceOnly: true
             ipam:
               mode: "kubernetes"
             bpf:
@@ -68,8 +71,6 @@ spec:
                 enabled: true
               ui:
                 enabled: true
-            operator:
-              replicas: 3
   konnectivity:
     adminPort: 8133
     agentPort: 8132
