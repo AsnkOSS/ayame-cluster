@@ -4,16 +4,12 @@ metadata:
   name: ztunnel
   namespace: istio-system
 spec:
-  revisionHistoryLimit: 10
   template:
     spec:
       containers:
-        - name: ztunnel
-
-          env:
-            - name: ISTIO_META_ENABLE_HBONE
-              value: "true"
+        - env:
             - name: ZTUNNEL_CPU_LIMIT
               valueFrom:
                 resourceFieldRef:
                   resource: limits.cpu
+          name: istio-proxy
