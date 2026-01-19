@@ -22,4 +22,4 @@ reset:
     k0sctl reset -c {{ root_directory }}/deploy.yaml
 
 kubeconfig:
-    k0sctl kubeconfig --config k0sctl.yaml > secrets/kubeconfig
+    k0sctl kubeconfig -c {{ root_directory }}/deploy.yaml > secrets/kubeconfig
