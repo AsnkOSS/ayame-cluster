@@ -9,3 +9,5 @@ resources:
 
 patches:
   - patch: master-node-patch.yaml
+    target:
+      kind: Deployment
