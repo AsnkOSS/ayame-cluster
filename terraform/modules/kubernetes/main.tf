@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "local_file" "k0sctl_config" {
-  content = templatefile("${path.module}/templates/config.yaml.tmpl", {
+  content = templatefile("${path.module}/templates/deploy.yaml.tmpl", {
     cluster_name           = var.cluster_name
     ssh_key_path           = var.ssh_key_path
     servers                = var.server_public_ips
@@ -18,5 +18,5 @@ resource "local_file" "k0sctl_config" {
     lb_external_private_ip = var.lb_external_private_ip
     lb_external_public_ip  = var.lb_external_public_ip
   })
-  filename = "${path.cwd}/kubernetes/config.yaml"
+  filename = "${path.cwd}/kubernetes/deploy.yaml"
 }
