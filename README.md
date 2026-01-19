@@ -23,6 +23,7 @@
 - talos does not have a ssh control service, designed only for k8s
 
 ```bash
+mkdir -p secrets
 just tf-init
 just tf-plan
 just tf-apply
