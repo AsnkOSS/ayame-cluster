@@ -204,8 +204,8 @@ module "kubernetes" {
   controller_private_ips = [
     for k, v in var.servers : v.private_ip if v.role == "control"
   ]
-  lb_external_private_ip = var.lb_internal_private_ip
+  lb_external_private_ip = var.lb_external_private_ip
   lb_external_public_ip  = module.external-loadbalancer.ipv4
-  lb_internal_private_ip = var.lb_external_private_ip
+  lb_internal_private_ip = var.lb_internal_private_ip
   lb_internal_public_ip  = module.internal-loadbalancer.ipv4
 }
