@@ -23,6 +23,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: pocketid-service.bluesky.svc.cluster.local
+            host: pocketid-service.pocketid.svc.cluster.local
             port:
               number: 1411

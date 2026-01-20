@@ -4,7 +4,7 @@ metadata:
   name: pocketid
   namespace: pocketid
 spec:
-  host: pocketid-service.bluesky.svc.cluster.local
+  host: pocketid-service.pocketid.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
