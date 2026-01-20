@@ -61,9 +61,9 @@ stringData:
     ENABLE_CAPTCHA                        = true
     REQUIRE_CAPTCHA_FOR_LOGIN             = true
     REQUIRE_EXTERNAL_REGISTRATION_CAPTCHA = true
-    CAPTCHA_TYPE                          = hcaptcha
-    HCAPTCHA_SECRET                       = ${HCAPTCHA_SECRET}
-    HCAPTCHA_SITEKEY                      = ${HCAPTCHA_SITEKEY}
+    CAPTCHA_TYPE                          = recaptcha
+    RECAPTCHA_SITEKEY                      = ${RECAPTCHA_SITEKEY}
+    RECAPTCHA_SECRET                       = ${RECAPTCHA_SECRET}
     DEFAULT_KEEP_EMAIL_PRIVATE            = true
     DEFAULT_ALLOW_CREATE_ORGANIZATION     = false
     SHOW_REGISTRATION_BUTTON              = false

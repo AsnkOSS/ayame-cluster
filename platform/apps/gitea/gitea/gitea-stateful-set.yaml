@@ -68,16 +68,16 @@ spec:
                 secretKeyRef:
                   name: gitea-secrets
                   key: GITEA_EMAIL_PASSWORD
-            - name: HCAPTCHA_SECRET
+            - name: RECAPTCHA_SITEKEY
               valueFrom:
                 secretKeyRef:
                   name: gitea-secrets
-                  key: HCAPTCHA_SECRET
-            - name: HCAPTCHA_SITEKEY
+                  key: RECAPTCHA_SITEKEY
+            - name: RECAPTCHA_SECRET
               valueFrom:
                 secretKeyRef:
                   name: gitea-secrets
-                  key: HCAPTCHA_SITEKEY
+                  key: RECAPTCHA_SECRET
             - name: METRICS_TOKEN
               valueFrom:
                 secretKeyRef:
