@@ -4,7 +4,7 @@ metadata:
   name: gitea
   namespace: gitea
 spec:
-  host: gitea.gitea.svc.cluster.local
+  host: gitea-service.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE

@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: smtp-resend
+  namespace: bluesky
+spec:
+  hosts:
+    - smtp.resend.com
+  ports:
+    - number: 587
+      name: smtp
+      protocol: TCP
+  location: MESH_EXTERNAL
+  resolution: DNS

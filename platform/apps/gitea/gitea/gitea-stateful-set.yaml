@@ -135,7 +135,6 @@ spec:
           volumeMounts:
             - name: gitea-data
               mountPath: /data
-
           readinessProbe:
             httpGet:
               path: /

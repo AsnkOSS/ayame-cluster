@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: bluesky
+  namespace: bluesky
+spec:
+  host: pds-service.bluesky.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE

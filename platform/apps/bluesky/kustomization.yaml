@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - sealed-secrets.yaml
+  - gitea/gitea-pvc.yaml
+  - gitea/gitea-service.yaml
+  - gitea/gitea-stateful-set.yaml
+  - network/certificate.yaml
+  - network/destination-rule.yaml
+  - network/gateway.yaml
+  - network/service-entry.yaml
+  - network/virtual-service.yaml
