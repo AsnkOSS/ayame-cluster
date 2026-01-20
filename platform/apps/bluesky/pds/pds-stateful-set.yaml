@@ -33,8 +33,7 @@ spec:
               mountPath: /data
       containers:
         - name: pds
-          image: busybox:latest
-          command: ["sh", "-c", "sleep infinity"]
+          image: ghcr.io/bluesky-social/pds:0.4
           ports:
             - containerPort: 3000
               name: http
