@@ -23,8 +23,7 @@ spec:
       initContainers:
       containers:
         - name: pocketid
-          image: busybox:latest
-          command: ["sh", "-c", "sleep infinity"]
+          image: ghcr.io/pocket-id/pocket-id:v1
           ports:
             - containerPort: 1411
               name: http
