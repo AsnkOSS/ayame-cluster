@@ -4,7 +4,6 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - sealed-secrets.yaml
   - pocketid/pocketid-pvc.yaml
   - pocketid/pocketid-service.yaml
   - pocketid/pocketid-stateful-set.yaml
