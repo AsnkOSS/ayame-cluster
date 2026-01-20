@@ -5,9 +5,9 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - sealed-secrets.yaml
-  - gitea/gitea-pvc.yaml
-  - gitea/gitea-service.yaml
-  - gitea/gitea-stateful-set.yaml
+  - pds/pds-pvc.yaml
+  - pds/pds-service.yaml
+  - pds/pds-stateful-set.yaml
   - network/certificate.yaml
   - network/destination-rule.yaml
   - network/gateway.yaml
