@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pocketid
+  namespace: pocketid
+spec:
+  serviceName: pocketid-service
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      app: pocketid
+  template:
+    metadata:
+      labels:
+        app: pocketid
+    spec:
+      securityContext:
+        fsGroup: 1000
+      initContainers:
+      containers:
+        - name: pocketid
+          image: busybox:latest
+          command: ["sh", "-c", "sleep infinity"]
+          ports:
+            - containerPort: 1411
+              name: http
+          env:
+            - name: APP_URL
+              value: "https://id.sne.moe"
+            - name: TRUST_PROXY
+              value: "true"
+          volumeMounts:
+            - name: pocketid-data
+              mountPath: /data/pocketid
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 1411
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 1411
+            initialDelaySeconds: 60
+            periodSeconds: 10
+
+      volumes:
+        - name: pocketid-data
+          persistentVolumeClaim:
+            claimName: pocketid-data

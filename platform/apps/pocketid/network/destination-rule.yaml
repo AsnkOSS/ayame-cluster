@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: pocketid
+  namespace: pocketid
+spec:
+  host: pocketid-service.bluesky.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
