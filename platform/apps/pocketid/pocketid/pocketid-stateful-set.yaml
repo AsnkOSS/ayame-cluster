@@ -34,7 +34,7 @@ spec:
               value: "true"
           volumeMounts:
             - name: pocketid-data
-              mountPath: /data/pocketid
+              mountPath: /app/data
           readinessProbe:
             httpGet:
               path: /
