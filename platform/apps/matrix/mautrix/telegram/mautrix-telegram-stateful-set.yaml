@@ -24,6 +24,9 @@ spec:
       containers:
         - name: matrix-mautrix-telegram
           image: dock.mau.dev/mautrix/telegram:latest
+          ports:
+            - containerPort: 29317
+              name: http
           volumeMounts:
             - name: matrix-mautrix-telegram-data
               mountPath: /data

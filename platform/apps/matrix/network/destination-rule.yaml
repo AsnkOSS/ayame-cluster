@@ -28,6 +28,18 @@ metadata:
   name: matrix-mautrix-telegram-postgres-service
   namespace: matrix
 spec:
+  host: matrix-mautrix-telegram-service.matrix.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: matrix-mautrix-telegram-postgres-service
+  namespace: matrix
+spec:
   host: matrix-mautrix-telegram-postgres-service.matrix.svc.cluster.local
   trafficPolicy:
     tls:
