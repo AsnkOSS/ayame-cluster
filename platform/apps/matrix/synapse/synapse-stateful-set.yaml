@@ -44,18 +44,18 @@ spec:
               mountPath: /data
             - name: matrix-synapse-media
               mountPath: /matrix_media_store
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8008
-            initialDelaySeconds: 20
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8008
-            initialDelaySeconds: 60
-            periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8008
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8008
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 10
 
       volumes:
         - name: matrix-synapse-data
