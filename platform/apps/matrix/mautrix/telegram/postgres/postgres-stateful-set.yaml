@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:18.1-alpine
+          image: postgres:18.1-bookworm
           ports:
             - containerPort: 5432
               name: postgres
