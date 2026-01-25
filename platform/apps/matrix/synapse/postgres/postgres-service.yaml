@@ -5,7 +5,7 @@ metadata:
   namespace: matrix
 spec:
   selector:
-    app: matrix-synapse
+    app: matrix-synapse-postgres
   ports:
     - name: postgres
       port: 5432

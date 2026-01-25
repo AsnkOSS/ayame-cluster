@@ -5,7 +5,7 @@ metadata:
   namespace: matrix
 spec:
   selector:
-    app: matrix-mautrix-telegram
+    app: matrix-mautrix-telegram-postgres
   ports:
     - name: postgres
       port: 5432
