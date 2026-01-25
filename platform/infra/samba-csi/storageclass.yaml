@@ -1,0 +1,17 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb
+provisioner: smb.csi.k8s.io
+parameters:
+  source: "//u537541.your-storagebox.de/backup"
+  csi.storage.k8s.io/provisioner-secret-name: "samba-csi-secrets"
+  csi.storage.k8s.io/provisioner-secret-namespace: "samba-csi"
+  csi.storage.k8s.io/node-stage-secret-name: "samba-csi-secrets"
+  csi.storage.k8s.io/node-stage-secret-namespace: "samba-csi"
+volumeBindingMode: Immediate
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=1001
+  - gid=1001
