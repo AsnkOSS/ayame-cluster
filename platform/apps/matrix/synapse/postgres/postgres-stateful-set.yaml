@@ -36,6 +36,8 @@ spec:
                   key: MATRIX_SYNAPSE_POSTGRES_PASSWORD
             - name: PGDATA
               value: "/data/pgdata"
+            - name: POSTGRES_INITDB_ARGS
+              value: "--lc-collate=C --lc-ctype=C"
           volumeMounts:
             - name: pgdata
               mountPath: /data
