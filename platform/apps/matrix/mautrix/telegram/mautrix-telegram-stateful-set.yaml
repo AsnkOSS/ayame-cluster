@@ -23,9 +23,7 @@ spec:
       initContainers:
       containers:
         - name: matrix-mautrix-telegram
-          # image: dock.mau.dev/mautrix/telegram:latest
-          image: alpine:latest
-          command: ["sh", "-c", "sleep infinity"]
+          image: dock.mau.dev/mautrix/telegram:latest
           volumeMounts:
             - name: matrix-mautrix-telegram-data
               mountPath: /data
