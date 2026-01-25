@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitea-meilisearch
+  name: gitea-meilisearch-service
   namespace: gitea
 spec:
   selector:
