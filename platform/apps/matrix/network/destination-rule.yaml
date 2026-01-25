@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: matrix-synapse
+  namespace: matrix
+spec:
+  host: matrix-synapse-service.matrix.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: matrix-synapse-postgres
+  namespace: matrix
+spec:
+  host: matrix-synapse-postgres-service.matrix.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: matrix-mautrix-telegram-postgres-service
+  namespace: matrix
+spec:
+  host: matrix-mautrix-telegram-postgres-service.matrix.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
