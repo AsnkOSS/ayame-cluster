@@ -24,7 +24,9 @@ spec:
       initContainers:
       containers:
         - name: matrix-synapse
-          image: docker.io/matrixdotorg/synapse:latest
+          # image: docker.io/matrixdotorg/synapse:latest
+          image: alpine:latest
+          command: ["sh", "-c", "sleep infinity"]
           ports:
             - containerPort: 8008
               name: http
