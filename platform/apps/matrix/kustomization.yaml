@@ -4,7 +4,6 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - config.yaml
   - sealed-secrets.yaml
   - network/certificate.yaml
   - network/gateway.yaml
