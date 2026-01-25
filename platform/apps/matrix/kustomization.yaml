@@ -16,6 +16,7 @@ resources:
   - synapse/postgres/postgres-service.yaml
   - synapse/postgres/postgres-stateful-set.yaml
   - mautrix/telegram/mautrix-telegram-data-pvc.yaml
+  - mautrix/telegram/mautrix-telegram-service.yaml
   - mautrix/telegram/mautrix-telegram-stateful-set.yaml
   - mautrix/telegram/postgres/postgres-pvc.yaml
   - mautrix/telegram/postgres/postgres-service.yaml
