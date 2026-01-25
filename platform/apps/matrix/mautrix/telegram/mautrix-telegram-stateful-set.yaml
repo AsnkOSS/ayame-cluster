@@ -23,10 +23,7 @@ spec:
       initContainers:
       containers:
         - name: matrix-mautrix-telegram
-          # image: dock.mau.dev/mautrix/telegram:latest
-          image: alpine:latest
-          command: ["/bin/sh"]
-          args: ["-c", "apk add --no-cache vim && sleep infinity"]
+          image: dock.mau.dev/mautrix/telegram:latest
           volumeMounts:
             - name: matrix-mautrix-telegram-data
               mountPath: /data
