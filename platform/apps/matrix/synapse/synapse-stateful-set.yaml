@@ -24,7 +24,10 @@ spec:
       initContainers:
       containers:
         - name: matrix-synapse
-          image: docker.io/matrixdotorg/synapse:latest
+          # image: docker.io/matrixdotorg/synapse:latest
+          image: alpine:latest
+          command: ["/bin/sh"]
+          args: ["-c", "apk add --no-cache vim && sleep infinity"]
           ports:
             - containerPort: 8008
               name: http
@@ -42,18 +45,18 @@ spec:
               mountPath: /data
             - name: matrix-synapse-media
               mountPath: /matrix_media_store
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8008
-            initialDelaySeconds: 20
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8008
-            initialDelaySeconds: 60
-            periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8008
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8008
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 10
 
       volumes:
         - name: matrix-synapse-data
