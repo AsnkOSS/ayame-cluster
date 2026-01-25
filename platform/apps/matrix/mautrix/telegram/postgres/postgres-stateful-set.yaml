@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: matrix-mautrix-telegram-postgres
+  namespace: matrix
+spec:
+  serviceName: matrix-mautrix-telegram-service
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      app: matrix-mautrix-telegram-postgres
+  template:
+    metadata:
+      labels:
+        app: matrix-mautrix-telegram-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14-alpine
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            - name: POSTGRES_DB
+              value: matrix_telegram_mautrix
+            - name: POSTGRES_USER
+              value: matrix_telegram_mautrix
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: matrix-secrets
+                  key: MAUTRIX_TELEGRAM_POSTGRES_PASSWORD
+            - name: PGDATA
+              value: "/data/pgdata"
+          volumeMounts:
+            - name: pgdata
+              mountPath: /data
+          readinessProbe:
+            exec:
+              command:
+                ["sh", "-c", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+                ["sh", "-c", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: matrix-mautrix-telegram-postgres-data

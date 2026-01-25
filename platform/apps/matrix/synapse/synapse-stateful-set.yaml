@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: matrix-synapse
+  namespace: matrix
+spec:
+  serviceName: matrix-synapse-service
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      app: matrix-synapse
+  template:
+    metadata:
+      labels:
+        app: matrix-synapse
+    spec:
+      securityContext:
+        fsGroup: 1000
+
+      initContainers:
+      containers:
+        - name: matrix-synapse
+          image: docker.io/matrixdotorg/synapse:latest
+          ports:
+            - containerPort: 8008
+              name: http
+          env:
+            - name: VIRTUAL_HOST
+              value: "sne.moe"
+            - name: VIRTUAL_PORT
+              value: "8008"
+            - name: SYNAPSE_SERVER_NAME
+              value: "sne.moe"
+            - name: SYNAPSE_REPORT_STATS
+              value: "yes"
+          volumeMounts:
+            - name: matrix-synapse-data
+              mountPath: /data
+            - name: matrix-synapse-media
+              mountPath: /matrix_media_store
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8008
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8008
+            initialDelaySeconds: 60
+            periodSeconds: 10
+
+      volumes:
+        - name: matrix-synapse-data
+          persistentVolumeClaim:
+            claimName: matrix-synapse-data
+        - name: matrix-synapse-media
+          persistentVolumeClaim:
+            claimName: matrix-synapse-media

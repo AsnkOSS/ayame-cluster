@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - config.yaml
+  - sealed-secrets.yaml
+  - network/certificate.yaml
+  - network/gateway.yaml
+  - network/virtual-service.yaml
+  - synapse/synapse-data-pvc.yaml
+  - synapse/synapse-media-pvc.yaml
+  - synapse/synapse-service.yaml
+  - synapse/synapse-stateful-set.yaml
+  - synapse/postgres/postgres-pvc.yaml
+  - synapse/postgres/postgres-service.yaml
+  - synapse/postgres/postgres-stateful-set.yaml
+  - mautrix/telegram/mautrix-telegram-data-pvc.yaml
+  - mautrix/telegram/mautrix-telegram-stateful-set.yaml
+  - mautrix/telegram/postgres/postgres-pvc.yaml
+  - mautrix/telegram/postgres/postgres-service.yaml
+  - mautrix/telegram/postgres/postgres-stateful-set.yaml

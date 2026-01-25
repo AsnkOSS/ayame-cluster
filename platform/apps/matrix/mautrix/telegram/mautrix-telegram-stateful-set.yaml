@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: matrix-synapse
+  namespace: matrix
+spec:
+  serviceName: matrix-synapse-service
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      app: matrix-synapse
+  template:
+    metadata:
+      labels:
+        app: matrix-synapse
+    spec:
+      securityContext:
+        fsGroup: 1000
+
+      initContainers:
+      containers:
+        - name: matrix-synapse
+          image: dock.mau.dev/mautrix/telegram:latest
+          volumeMounts:
+            - name: matrix-mautrix-telegram-data
+              mountPath: /data
+
+      volumes:
+        - name: matrix-mautrix-telegram-data
+          persistentVolumeClaim:
+            claimName: matrix-mautrix-telegram-data

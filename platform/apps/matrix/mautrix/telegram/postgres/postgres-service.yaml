@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: matrix-mautrix-telegram-postgres
+  namespace: matrix
+spec:
+  selector:
+    app: matrix-mautrix-telegram
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP

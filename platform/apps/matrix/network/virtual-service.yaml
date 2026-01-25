@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: matrix
+  namespace: matrix
+spec:
+  hosts:
+    - matrix.sne.moe
+  gateways:
+    - matrix-gateway
+
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+        redirectCode: 308
+
+    - match:
+        - port: 443
+          uri:
+            prefix: /
+      route:
+        - destination:
+            host: matrix-synapse-service.matrix.svc.cluster.local
+            port:
+              number: 8008
