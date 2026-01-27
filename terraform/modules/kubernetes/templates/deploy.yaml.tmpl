@@ -5,6 +5,7 @@ metadata:
 spec:
   hosts:
 %{ for name, host in servers ~}
+%{ if host.role == "control" || host.role == "worker" ~}
     - ssh:
         address: ${host.public_ip}
         user: root
@@ -12,6 +13,7 @@ spec:
         keyPath: ${ssh_key_path}
       privateAddress: ${host.private_ip}
       role: ${host.role == "control" ? "controller" : "worker"}
+%{ endif ~}
 %{ endfor ~}
   options:
     wait:
