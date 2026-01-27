@@ -11,10 +11,12 @@ spec:
   updateStrategy:
     type: OnDelete
   selector:
-    matchLabels: app:teamcity-server
+    matchLabels:
+      app: teamcity-server
   template:
     metadata:
-      labels: app:teamcity-server
+      labels:
+        app: teamcity-server
     spec:
       securityContext:
         fsGroup: 1000
