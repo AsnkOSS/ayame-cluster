@@ -21,7 +21,7 @@ spec:
         protocol: HTTPS
       tls:
         mode: SIMPLE
-        credentialName: gitea-tls
+        credentialName: bluesky-tls
       hosts:
         - "bsky.sne.moe"
         - "*.bsky.sne.moe"
