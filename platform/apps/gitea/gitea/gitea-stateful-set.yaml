@@ -107,7 +107,7 @@ spec:
 
       containers:
         - name: gitea
-          image: docker.gitea.com/gitea:1.25.3-rootless
+          image: docker.gitea.com/gitea:1.25.4-rootless
           ports:
             - containerPort: 3000
               name: http
