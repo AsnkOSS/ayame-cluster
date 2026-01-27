@@ -54,7 +54,6 @@ variable "servers" {
     "worker-3"  = { role = "worker", private_ip = "10.0.0.23", server_type = "cx53" }
     "worker-4"  = { role = "worker", private_ip = "10.0.0.24", server_type = "cx53" }
     "worker-5"  = { role = "worker", private_ip = "10.0.0.25", server_type = "cx53" }
-    "gitea-act" = { role = "action", private_ip = "10.0.0.31", server_type = "cx43" }
   }
 }
 

@@ -136,7 +136,7 @@ stringData:
     STORAGE_TYPE = hcloud
 
     [actions]
-    ENABLED = true
+    ENABLED = false
 
     [other]
     SHOW_FOOTER_VERSION            = false
