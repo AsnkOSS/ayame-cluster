@@ -16,7 +16,7 @@ metadata:
   name: teamcity-postgres
   namespace: teamcity
 spec:
-  host: teamcity-postgres.teamcity.svc.cluster.local
+  host: teamcity-postgres-service.teamcity.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE

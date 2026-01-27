@@ -16,7 +16,7 @@ metadata:
   name: gitea-postgres
   namespace: gitea
 spec:
-  host: gitea-postgres.gitea.svc.cluster.local
+  host: gitea-postgres-service.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -28,7 +28,7 @@ metadata:
   name: gitea-redis
   namespace: gitea
 spec:
-  host: gitea-redis.gitea.svc.cluster.local
+  host: gitea-redis-service.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
@@ -40,7 +40,7 @@ metadata:
   name: gitea-meilisearch
   namespace: gitea
 spec:
-  host: gitea-meilisearch.gitea.svc.cluster.local
+  host: gitea-meilisearch-service.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
