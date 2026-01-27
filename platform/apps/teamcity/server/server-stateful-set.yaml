@@ -33,18 +33,6 @@ spec:
               mountPath: /data/teamcity_server/datadir
             - name: teamcity-server-logs
               mountPath: /opt/teamcity/logs
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8111
-            initialDelaySeconds: 300
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8111
-            initialDelaySeconds: 300
-            periodSeconds: 10
 
       volumes:
         - name: teamcity-server-data
