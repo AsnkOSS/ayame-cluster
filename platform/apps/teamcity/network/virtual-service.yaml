@@ -5,7 +5,7 @@ metadata:
   namespace: teamcity
 spec:
   hosts:
-    - git.asnk.io
+    - ci.asnk.io
   gateways:
     - teamcity-gateway
 
