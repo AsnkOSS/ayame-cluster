@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: teamcity
+  namespace: teamcity
+spec:
+  hosts:
+    - git.asnk.io
+  gateways:
+    - teamcity-gateway
+
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+        redirectCode: 308
+
+    - match:
+        - port: 443
+          uri:
+            prefix: /
+      route:
+        - destination:
+            host: teamcity-server-service.teamcity.svc.cluster.local
+            port:
+              number: 8111

@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: teamcity-server
+  namespace: teamcity
+spec:
+  host: teamcity-server-service.teamcity.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: teamcity-postgres
+  namespace: teamcity
+spec:
+  host: teamcity-postgres.teamcity.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE

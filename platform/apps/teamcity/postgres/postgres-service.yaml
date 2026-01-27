@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: teamcity-postgres-service
+  namespace: teamcity
+spec:
+  selector:
+    app: teamcity-postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP

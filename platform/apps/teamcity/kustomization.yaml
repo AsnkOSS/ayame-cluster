@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - sealed-secrets.yaml
+  - network/certificate.yaml
+  - network/destination-rule.yaml
+  - network/gateway.yaml
+  - network/service-entry.yaml
+  - network/virtual-service.yaml
+  - server/server-data-pvc.yaml
+  - server/server-logs-pvc.yaml
+  - server/server-service.yaml
+  - server/server-stateful-set.yaml
+  - postgres/postgres-pvc.yaml
+  - postgres/postgres-service.yaml
+  - postgres/postgres-stateful-set.yaml

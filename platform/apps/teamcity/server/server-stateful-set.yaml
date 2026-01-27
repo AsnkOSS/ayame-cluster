@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: teamcity-server
+  namespace: teamcity
+spec:
+  serviceName: teamcity-server-service
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  revisionHistoryLimit: 0
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels: app:teamcity-server
+  template:
+    metadata:
+      labels: app:teamcity-server
+    spec:
+      securityContext:
+        fsGroup: 1000
+
+      initContainers:
+      containers:
+        - name: teamcity-server
+          image: docker.io/jetbrains/teamcity-server:latest
+          ports:
+            - containerPort: 8111
+              name: http
+          volumeMounts:
+            - name: teamcity-server-data
+              mountPath: /data/teamcity_server/datadir
+            - name: teamcity-server-logs
+              mountPath: /opt/teamcity/logs
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8111
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8111
+            initialDelaySeconds: 60
+            periodSeconds: 10
+
+      volumes:
+        - name: teamcity-server-data
+          persistentVolumeClaim:
+            claimName: teamcity-server-data
+        - name: teamcity-server-logs
+          persistentVolumeClaim:
+            claimName: teamcity-server-logs
