@@ -162,7 +162,7 @@ module "external-loadbalancer" {
     }
     gitea_ssh = {
       protocol         = "tcp"
-      listen_port      = 2222
+      listen_port      = 22
       destination_port = 30122
       health_check = {
         protocol = "tcp"

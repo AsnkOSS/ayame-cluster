@@ -18,7 +18,7 @@ stringData:
     SSH_DOMAIN         = git.asnk.io
     DISABLE_SSH        = false
     START_SSH_SERVER   = true
-    SSH_PORT           = 2222
+    SSH_PORT           = 22
     SSH_LISTEN_PORT    = 2222
     ENABLE_GZIP        = true
     LFS_START_SERVER   = true
