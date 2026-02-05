@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - lgtm-stack.yaml
+  - lgtm-stack-pvc.yaml
+  - network/certificate.yaml
+  - network/destination-rule.yaml
+  - network/gateway.yaml
+  - network/virtual-service.yaml

@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: lgtm-stack
+  namespace: lgtm-stack
+spec:
+  host: lgtm-stack-service.lgtm-stack.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
