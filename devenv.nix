@@ -14,6 +14,7 @@
     k0sctl
     uv
     just
+    git-crypt
   ];
 
   env = {
