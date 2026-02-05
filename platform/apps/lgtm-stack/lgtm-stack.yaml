@@ -34,18 +34,17 @@ metadata:
   name: lgtm-stack
   namespace: lgtm-stack
 spec:
-  serviceName: lgtm-stack-service
   replicas: 1
   selector:
     matchLabels:
-      app: lgtm
+      app: lgtm-stack
   template:
     metadata:
       labels:
-        app: lgtm
+        app: lgtm-stack
     spec:
       containers:
-        - name: lgtm
+        - name: lgtm-stack
           image: grafana/otel-lgtm:latest
           ports:
             - containerPort: 3000
