@@ -18,10 +18,6 @@ spec:
       labels:
         app: teamcity-server
     spec:
-      securityContext:
-        fsGroup: 1000
-
-      initContainers:
       containers:
         - name: teamcity-server
           image: docker.io/jetbrains/teamcity-server:latest
