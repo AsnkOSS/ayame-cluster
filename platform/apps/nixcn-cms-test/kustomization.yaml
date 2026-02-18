@@ -16,5 +16,6 @@ resources:
 
 configMapGenerator:
   - name: nixcn-cms-test-config
+    namespace: nixcn-cms-test
     envs:
       - config.env
