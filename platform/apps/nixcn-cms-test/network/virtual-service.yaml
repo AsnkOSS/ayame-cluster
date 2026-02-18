@@ -18,7 +18,7 @@ spec:
 
     - match:
         - uri:
-            prefix: /app/api/
+            prefix: /app/api
       route:
         - destination:
             host: nixcn-cms-test-server-service.nixcn-cms-test.svc.cluster.local
@@ -27,7 +27,7 @@ spec:
 
     - match:
         - uri:
-            prefix: /app/
+            prefix: /app
       route:
         - destination:
             host: nixcn-cms-test-client-service.nixcn-cms-test.svc.cluster.local
