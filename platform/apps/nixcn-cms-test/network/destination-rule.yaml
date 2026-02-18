@@ -1,0 +1,46 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: nixcn-cms-test-server
+  namespace: nixcn-cms-test
+spec:
+  host: nixcn-cms-test-server-service.nixcn-cms-test.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: nixcn-cms-test-client
+  namespace: nixcn-cms-test
+spec:
+  host: nixcn-cms-test-client-service.nixcn-cms-test.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: nixcn-cms-test-postgres
+  namespace: nixcn-cms-test
+spec:
+  host: nixcn-cms-test-postgres-rw.nixcn-cms-test.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: nixcn-cms-test-redis
+  namespace: nixcn-cms-test
+spec:
+  host: nixcn-cms-test-redis-service.nixcn-cms-test.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE

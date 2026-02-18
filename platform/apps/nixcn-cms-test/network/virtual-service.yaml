@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: nixcn-cms-test
+  namespace: nixcn-cms-test
+spec:
+  hosts:
+    - git.asnk.io
+  gateways:
+    - nixcn-cms-test-gateway
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+        redirectCode: 308
+
+    - match:
+        - uri:
+            prefix: /app/api/
+      route:
+        - destination:
+            host: nixcn-cms-test-server-service.nixcn-cms-test.svc.cluster.local
+            port:
+              number: 8000
+
+    - match:
+        - uri:
+            prefix: /app/
+      route:
+        - destination:
+            host: nixcn-cms-test-client-service.nixcn-cms-test.svc.cluster.local
+            port:
+              number: 3000
