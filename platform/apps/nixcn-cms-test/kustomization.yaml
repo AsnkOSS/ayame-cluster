@@ -11,8 +11,8 @@ resources:
   - redis/redis-pvc.yaml
   - redis/redis-service.yaml
   - redis/redis-stateful-set.yaml
-  - server.yaml
-  - client.yaml
+  - server/server-deployment.yaml
+  - client/client-deployment.yaml
 
 configMapGenerator:
   - name: nixcn-cms-test-config
