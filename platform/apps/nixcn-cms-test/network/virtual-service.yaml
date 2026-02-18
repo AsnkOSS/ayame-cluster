@@ -27,7 +27,14 @@ spec:
 
     - match:
         - uri:
-            prefix: /app
+            exact: /app
+      redirect:
+        uri: /app/
+        redirectCode: 301
+
+    - match:
+        - uri:
+            prefix: /app/
       route:
         - destination:
             host: nixcn-cms-test-client-service.nixcn-cms-test.svc.cluster.local
