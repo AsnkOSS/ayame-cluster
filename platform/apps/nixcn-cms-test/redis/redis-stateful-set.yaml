@@ -43,6 +43,11 @@ spec:
               name: redis
           args:
             - "redis-server"
+            - "--dir"
+            - "/data/redis"
+            - "--appendonly"
+            - "yes"
+          volumeMounts:
             - name: redisdata
               mountPath: /data
           readinessProbe:
