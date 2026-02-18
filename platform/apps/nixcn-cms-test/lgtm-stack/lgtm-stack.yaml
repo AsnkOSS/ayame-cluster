@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: lgtm-stack-service
-  namespace: lgtm-stack
+  namespace: nixcn-cms-test
 spec:
   selector:
     app: lgtm-stack
@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lgtm-stack
-  namespace: lgtm-stack
+  namespace: nixcn-cms-test
 spec:
   replicas: 1
   strategy:
