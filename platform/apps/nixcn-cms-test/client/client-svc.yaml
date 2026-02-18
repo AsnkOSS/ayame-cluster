@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nixcn-cms-test-client-service
+  namespace: nixcn-cms-test
+spec:
+  selector:
+    app: nixcn-cms-test-client
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
