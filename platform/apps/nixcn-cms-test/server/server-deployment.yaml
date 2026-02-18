@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/name: nixcn-cms-test-server
     spec:
       imagePullSecrets:
-        - name: nixcn-cms-test-secrets
+        - name: nixcn-cms-test-registry-key
       containers:
         - name: server
           image: registry.asnk.io/nixcn/cms-server:dev

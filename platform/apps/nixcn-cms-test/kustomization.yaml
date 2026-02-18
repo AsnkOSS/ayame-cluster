@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - sealed-secrets.yaml
+  - registry-key.yaml
   - lgtm-stack/lgtm-stack.yaml
   - lgtm-stack/lgtm-stack-pvc.yaml
   - postgres/cnpg.yaml
