@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.34.2-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nixcn-cms-test-deployment
+  namespace: nixcn-cms-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: server
+  template:
+    spec:
+      imagePullSecrets:
+        - name: nixcn-cms-test-secrets
+      containers:
+        - name: server
+          image: registry.asnk.io/nixcn/cms-server:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-postgres-app
+                  key: dbname
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-postgres-app
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-postgres-app
+                  key: password
+          envFrom:
+            - configMapRef:
+                name: nixcn-cms-test-config
+            - secretRef:
+                name: nixcn-cms-test-secrets

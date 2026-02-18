@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.34.2-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nixcn-cms-test-deployment
+  namespace: nixcn-cms-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: server
+  template:
+    spec:
+      imagePullSecrets:
+        - name: nixcn-cms-test-secrets
+      containers:
+        - name: server
+          image: registry.asnk.io/nixcn/cms-client:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http

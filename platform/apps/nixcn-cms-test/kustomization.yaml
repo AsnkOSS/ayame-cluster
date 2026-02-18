@@ -4,9 +4,17 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
+  - sealed-secrets.yaml
   - lgtm-stack/lgtm-stack.yaml
   - lgtm-stack/lgtm-stack-pvc.yaml
   - postgres/cnpg.yaml
   - redis/redis-pvc.yaml
   - redis/redis-service.yaml
   - redis/redis-stateful-set.yaml
+  - server.yaml
+  - client.yaml
+
+configMapGenerator:
+  - name: nixcn-cms-test-config
+    envs:
+      - config.env
