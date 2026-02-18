@@ -5,7 +5,7 @@ metadata:
   namespace: nixcn-cms-test
 spec:
   hosts:
-    - git.asnk.io
+    - test.nix.org.cn
   gateways:
     - nixcn-cms-test-gateway
   http:
