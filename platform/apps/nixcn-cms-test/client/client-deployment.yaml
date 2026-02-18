@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nixcn-cms-test-deployment
+  name: nixcn-cms-test-client-deployment
   namespace: nixcn-cms-test
 spec:
   replicas: 1
