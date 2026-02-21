@@ -26,6 +26,12 @@ resource "hcloud_server" "this" {
     cluster = var.cluster_name
     role    = each.value.role
   }
+
+  lifecycle {
+    ignore_changes = [
+      ssh_keys,
+    ]
+  }
 }
 
 resource "hcloud_server_network" "this" {
