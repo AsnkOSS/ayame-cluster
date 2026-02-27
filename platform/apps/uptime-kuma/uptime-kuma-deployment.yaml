@@ -28,7 +28,7 @@ spec:
             - name: UMASK
               value: "0022"
           volumeMounts:
-            - name: uptime-kuma-pvc
+            - name: uptime-kuma-storage
               mountPath: /app/data
           livenessProbe:
             httpGet:
@@ -38,3 +38,7 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
             failureThreshold: 3
+          volumes:
+            - name: uptime-kuma-storage
+              persistentVolumeClaim:
+                claimName: uptime-kuma-pvc
