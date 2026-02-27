@@ -38,7 +38,7 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
             failureThreshold: 3
-          volumes:
-            - name: uptime-kuma-storage
-              persistentVolumeClaim:
-                claimName: uptime-kuma-pvc
+      volumes:
+        - name: uptime-kuma-storage
+          persistentVolumeClaim:
+            claimName: uptime-kuma-pvc
