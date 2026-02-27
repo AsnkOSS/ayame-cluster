@@ -25,4 +25,4 @@ spec:
         - destination:
             host: uptime-kuma-service.uptime-kuma.svc.cluster.local
             port:
-              number: 8111
+              number: 3001
