@@ -3,8 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: uptime-kuma-pvc
 spec:
-  accessModes:
-    - ReadWriteOnce
+  storageClassName: hcloud-volumes
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: hcloud-volumes
   resources:
     requests:
       storage: 10Gi
