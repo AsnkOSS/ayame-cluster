@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: uptime-kuma-server
+  namespace: teamcity
+spec:
+  host: uptime-kuma-service.uptime-kuma.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
