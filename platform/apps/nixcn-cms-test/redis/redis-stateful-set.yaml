@@ -46,7 +46,7 @@ spec:
             - "--dir"
             - "/data/redis"
             - "--appendonly"
-            - "yes"
+            - "no"
           volumeMounts:
             - name: redisdata
               mountPath: /data
