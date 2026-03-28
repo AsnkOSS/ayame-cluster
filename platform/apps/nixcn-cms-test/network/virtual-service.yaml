@@ -35,8 +35,6 @@ spec:
     - match:
         - uri:
             prefix: /app/
-      rewrite:
-        uri: /
       route:
         - destination:
             host: nixcn-cms-test-client-service.nixcn-cms-test.svc.cluster.local
