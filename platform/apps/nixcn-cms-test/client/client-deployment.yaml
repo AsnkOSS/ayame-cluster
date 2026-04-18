@@ -45,3 +45,8 @@ spec:
                 secretKeyRef:
                   name: nixcn-cms-test-secrets
                   key: SENTRY_AUTH_TOKEN
+            - name: PUBLIC_TURNSTILE_SITE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-secrets
+                  key: PUBLIC_TURNSTILE_SITE_KEY
