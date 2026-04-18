@@ -24,3 +24,24 @@ spec:
           ports:
             - containerPort: 3000
               name: http
+          env:
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-secrets
+                  key: SENTRY_DSN
+            - name: SENTRY_ORG
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-secrets
+                  key: SENTRY_ORG
+            - name: SENTRY_PROJECT
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-secrets
+                  key: SENTRY_PROJECT
+            - name: SENTRY_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-test-secrets
+                  key: SENTRY_AUTH_TOKEN
