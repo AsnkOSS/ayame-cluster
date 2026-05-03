@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: nixcn-cms-prod-postgres
+  namespace: nixcn-cms-prod
+spec:
+  instances: 3
+  storage:
+    storageClass: hcloud-volumes
+    size: 10Gi

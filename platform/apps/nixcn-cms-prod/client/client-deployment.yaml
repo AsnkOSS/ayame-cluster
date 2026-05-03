@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.34.2-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nixcn-cms-prod-client-deployment
+  namespace: nixcn-cms-prod
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: nixcn-cms-prod-client
+  template:
+    metadata:
+      labels:
+        app: nixcn-cms-prod-client
+    spec:
+      imagePullSecrets:
+        - name: nixcn-cms-prod-registry-key
+      containers:
+        - name: client
+          image: registry.asnk.io/nixcn/cms-client:release
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-prod-secrets
+                  key: SENTRY_DSN
+            - name: SENTRY_ORG
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-prod-secrets
+                  key: SENTRY_ORG
+            - name: SENTRY_PROJECT
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-prod-secrets
+                  key: SENTRY_PROJECT
+            - name: SENTRY_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-prod-secrets
+                  key: SENTRY_AUTH_TOKEN
+            - name: PUBLIC_TURNSTILE_SITE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: nixcn-cms-prod-secrets
+                  key: PUBLIC_TURNSTILE_SITE_KEY

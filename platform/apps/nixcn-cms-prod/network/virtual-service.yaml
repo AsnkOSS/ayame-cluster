@@ -1,0 +1,42 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: nixcn-cms-prod
+  namespace: nixcn-cms-prod
+spec:
+  hosts:
+    - nix.org.cn
+  gateways:
+    - nixcn-cms-prod-gateway
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+        redirectCode: 308
+
+    - match:
+        - uri:
+            prefix: /app/api
+      route:
+        - destination:
+            host: nixcn-cms-prod-server-service.nixcn-cms-prod.svc.cluster.local
+            port:
+              number: 8000
+
+    - match:
+        - uri:
+            exact: /app
+      redirect:
+        uri: /app/
+        redirectCode: 301
+
+    - match:
+        - uri:
+            prefix: /app/
+      route:
+        - destination:
+            host: nixcn-cms-prod-client-service.nixcn-cms-prod.svc.cluster.local
+            port:
+              number: 3000

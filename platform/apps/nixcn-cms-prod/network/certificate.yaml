@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nixcn-cms-prod-cert
+  namespace: istio-ingress
+spec:
+  secretName: nixcn-cms-prod-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  dnsNames:
+    - nix.org.cn

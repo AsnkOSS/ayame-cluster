@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nixcn-cms-prod-server-service
+  namespace: nixcn-cms-prod
+spec:
+  selector:
+    app: nixcn-cms-prod-server
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
