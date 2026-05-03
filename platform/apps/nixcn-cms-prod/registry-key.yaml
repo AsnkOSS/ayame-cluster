@@ -1,0 +1,14 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: nixcn-cms-prod-registry-key
+  namespace: nixcn-cms-prod
+spec:
+  encryptedData:
+    .dockerconfigjson: AgBdH+eHGrz5EKCEAKur6TA6Qs++rdUJ9+Juv9T/1UP0KReLl40O79HK1Lv1QoCTAxbldtkEEZTFXP4WKhngqDWmf1ptd656KDjy0gXgj5aFkUOZDAZjHb9gYy5RxDpvkaFLZMzmzcqhCASf+N+z53LCaQub9MKm4jKH9eJqtDNOQZEweRX4W5nVcb74pJDXfsabJTmpLnhZlydJJvqHiEMFssd9r5pnWsnNic9J5WomQAieLxZU6qBlcC0IaCtzXqpdUc/QuSDDqthjm8JReCE4VK87Nk9uGR/xBXrcEpDtseuAqxkk44FCse/fzOHXJtxOgStOVxoodtq2y2ADCTnDcvDKBdzdc4rYKPXtsVfFwGxHoWKew8kFBA1GzpGAN3EOchPSMUpn6yGo/hUjRK0I+eCSWDFEKAZWuhbgREQf9DeQEKMv3QSds7udE/iK/r8n5daDPBKkXf+hWVJUfC9z5VUylt2dsug4BUmZmP6TIkRiT/sv8HWsXQKsZ5pqvxTVyFoGj7V/USv+b0Q+Lce7V5wSt+p2AJIPOVhTyPDgajRVTb6PwIfoqWi/dmML8ic8ShDtE06j/mE7bt1qUXdAEG9psAcP8HklSG/oqJjmE9XJIjmtaC/1eb46GXy+bNHF1GVzrMcCxOFO94/p7D62Nxma6nR1KhNCCU6Q+RjNTDNmQfKT1eXCE3DVEChWSWGgMrgwa8ylqIDZkg6anXWEZRyEWdhhem65EkyJFs40hEfSEd5ZclQkeBlcHSUNMcBQyhZ2K4WP/TAhCN+zf/Vnz5Hsq6dW9r0RUf7CD83cPtwAaL8EDNmDWLZg1S5CWm0IEsOEUZsOUlMO/3znvVtPZDI+eQya2PcIU+tTrGGA59sg47Lfpig679+gJudnVRUez2RDFEP8brnUiPgaamFToxtv41fPaf8uoP1Jwc2NVT70OVPYhZmb9+ESrcSj7URV+g==
+  template:
+    metadata:
+      name: nixcn-cms-prod-registry-key
+      namespace: nixcn-cms-prod
+    type: kubernetes.io/dockerconfigjson
